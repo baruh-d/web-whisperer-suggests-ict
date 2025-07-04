@@ -2,13 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-/* OPPA Services Ltd Design System - Kenya-inspired palette
+/* OPPA Services Ltd Design System - Corporate Elite Blue
 All colors MUST be HSL.
 */
 
 @layer base {
   :root {
-    /* Kenya Flag Inspired Colors */
+    /* Corporate Elite Colors */
     --background: 0 0% 98%;
     --foreground: 0 0% 9%;
 
@@ -18,56 +18,62 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 9%;
 
-    /* Kenya Green - Primary brand color */
-    --primary: 142 69% 25%;
+    /* OPPA Corporate Blue - Primary brand color */
+    --primary: 215 65% 29%;
     --primary-foreground: 0 0% 98%;
-    --primary-light: 142 45% 35%;
-    --primary-dark: 142 69% 15%;
+    --primary-light: 215 65% 39%;
+    --primary-dark: 215 65% 19%;
+    --primary-glow: 215 65% 49%;
 
-    /* Kenya Red - Accent color */
-    --kenya-red: 0 75% 45%;
-    --kenya-red-foreground: 0 0% 98%;
+    /* Corporate Black */
+    --corporate-black: 0 0% 0%;
+    --corporate-black-foreground: 0 0% 98%;
 
-    /* Kenya Black */
-    --kenya-black: 0 0% 9%;
-    --kenya-black-foreground: 0 0% 98%;
+    /* Pure White */
+    --corporate-white: 0 0% 100%;
+    --corporate-white-foreground: 0 0% 9%;
 
-    /* Brand Blue - Professional touch */
-    --brand-blue: 217 91% 45%;
-    --brand-blue-foreground: 0 0% 98%;
-    --brand-blue-light: 217 91% 55%;
+    /* Accent Blue Variants */
+    --accent-blue: 215 65% 35%;
+    --accent-blue-foreground: 0 0% 98%;
+    --accent-blue-light: 215 65% 45%;
 
-    --secondary: 142 20% 95%;
-    --secondary-foreground: 142 69% 15%;
+    --secondary: 215 15% 95%;
+    --secondary-foreground: 215 65% 15%;
 
     --muted: 210 40% 96%;
     --muted-foreground: 0 0% 45%;
 
-    --accent: 142 20% 95%;
-    --accent-foreground: 142 69% 25%;
+    --accent: 215 15% 95%;
+    --accent-foreground: 215 65% 29%;
 
     --destructive: 0 75% 45%;
     --destructive-foreground: 0 0% 98%;
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 142 69% 25%;
+    --ring: 215 65% 29%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
     /* Custom gradients and effects */
-    --gradient-kenya: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--brand-blue)) 100%);
-    --gradient-hero: linear-gradient(135deg, hsl(var(--primary-dark)) 0%, hsl(var(--primary)) 50%, hsl(var(--brand-blue)) 100%);
+    --gradient-corporate: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-glow)) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(var(--primary-dark)) 0%, hsl(var(--primary)) 50%, hsl(var(--primary-glow)) 100%);
     --gradient-card: linear-gradient(145deg, hsl(var(--card)) 0%, hsl(var(--accent)) 100%);
+    --gradient-elite: linear-gradient(45deg, hsl(var(--primary-dark)) 0%, hsl(var(--primary)) 35%, hsl(var(--primary-light)) 100%);
+    --gradient-glass: linear-gradient(135deg, hsl(var(--card) / 0.8) 0%, hsl(var(--accent) / 0.4) 100%);
     
     /* Animation variables */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-spring: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    --transition-elastic: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     
     /* Shadow system */
-    --shadow-kenya: 0 10px 30px -10px hsl(var(--primary) / 0.3);
+    --shadow-corporate: 0 10px 30px -10px hsl(var(--primary) / 0.3);
     --shadow-card: 0 4px 20px -4px hsl(var(--foreground) / 0.1);
     --shadow-hover: 0 8px 30px -8px hsl(var(--primary) / 0.4);
+    --shadow-elite: 0 20px 60px -12px hsl(var(--primary) / 0.25);
+    --shadow-glow: 0 0 40px hsl(var(--primary-glow) / 0.3);
 
     --sidebar-background: 0 0% 98%;
 

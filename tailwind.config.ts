@@ -54,18 +54,18 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				'kenya-red': {
-					DEFAULT: 'hsl(var(--kenya-red))',
-					foreground: 'hsl(var(--kenya-red-foreground))'
+				'corporate-black': {
+					DEFAULT: 'hsl(var(--corporate-black))',
+					foreground: 'hsl(var(--corporate-black-foreground))'
 				},
-				'kenya-black': {
-					DEFAULT: 'hsl(var(--kenya-black))',
-					foreground: 'hsl(var(--kenya-black-foreground))'
+				'corporate-white': {
+					DEFAULT: 'hsl(var(--corporate-white))',
+					foreground: 'hsl(var(--corporate-white-foreground))'
 				},
-				'brand-blue': {
-					DEFAULT: 'hsl(var(--brand-blue))',
-					foreground: 'hsl(var(--brand-blue-foreground))',
-					light: 'hsl(var(--brand-blue-light))'
+				'accent-blue': {
+					DEFAULT: 'hsl(var(--accent-blue))',
+					foreground: 'hsl(var(--accent-blue-foreground))',
+					light: 'hsl(var(--accent-blue-light))'
 				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
@@ -131,14 +131,18 @@ export default {
 				'dm-sans': ['DM Sans', 'sans-serif']
 			},
 			backgroundImage: {
-				'gradient-kenya': 'var(--gradient-kenya)',
+				'gradient-corporate': 'var(--gradient-corporate)',
 				'gradient-hero': 'var(--gradient-hero)',
-				'gradient-card': 'var(--gradient-card)'
+				'gradient-card': 'var(--gradient-card)',
+				'gradient-elite': 'var(--gradient-elite)',
+				'gradient-glass': 'var(--gradient-glass)'
 			},
 			boxShadow: {
-				'kenya': 'var(--shadow-kenya)',
+				'corporate': 'var(--shadow-corporate)',
 				'card': 'var(--shadow-card)',
-				'hover': 'var(--shadow-hover)'
+				'hover': 'var(--shadow-hover)',
+				'elite': 'var(--shadow-elite)',
+				'glow': 'var(--shadow-glow)'
 			}
 		}
 	},
