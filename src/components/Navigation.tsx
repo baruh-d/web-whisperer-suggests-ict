@@ -51,16 +51,19 @@ const Navigation = () => {
             {/* Logo */}
             <Link to="/" className="flex items-center space-x-4 group">
               <div className="relative">
-                <div className="w-14 h-14 bg-gradient-corporate rounded-xl flex items-center justify-center shadow-glow group-hover:shadow-hover transition-all duration-300 group-hover:scale-105">
-                  <span className="text-white font-bold text-2xl font-poppins">O</span>
+                {/* Logo Placeholder - Replace with actual logo */}
+                <div className="w-16 h-16 bg-gradient-corporate rounded-xl flex items-center justify-center shadow-glow group-hover:shadow-hover transition-all duration-300 group-hover:scale-105 border-2 border-white/20">
+                  <div className="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center backdrop-blur-sm">
+                    <span className="text-white font-display font-bold text-lg">LOGO</span>
+                  </div>
                 </div>
                 <div className="absolute -top-1 -right-1 w-4 h-4 bg-accent-blue rounded-full animate-pulse"></div>
               </div>
               <div className="hidden sm:block">
-                <div className="font-poppins font-bold text-2xl text-foreground group-hover:text-primary transition-colors">
+                <div className="font-display font-bold text-2xl text-foreground group-hover:text-primary transition-colors">
                   OPPA Services
                 </div>
-                <div className="text-sm text-muted-foreground font-medium tracking-wide">
+                <div className="text-sm text-muted-foreground font-body font-medium tracking-wide">
                   ICT Systems Integration
                 </div>
               </div>
@@ -72,7 +75,7 @@ const Navigation = () => {
                 <Link
                   key={link.href}
                   to={link.href}
-                  className={`relative font-medium text-base transition-all duration-300 group ${
+                  className={`relative font-body font-medium text-base transition-all duration-300 group ${
                     isActive(link.href)
                       ? 'text-primary'
                       : 'text-foreground hover:text-primary'
@@ -92,18 +95,18 @@ const Navigation = () => {
                     <div className="p-1 rounded-full bg-accent">
                       <Phone className="h-3 w-3" />
                     </div>
-                    <span className="font-medium">+254 705 576 746</span>
+                      <span className="font-body font-medium">+254 705 576 746</span>
                   </a>
                   <div className="w-px h-4 bg-border"></div>
                   <a href="mailto:info@oppaservices.com" className="flex items-center space-x-2 hover:text-primary transition-all duration-300 hover:scale-105">
                     <div className="p-1 rounded-full bg-accent">
                       <Mail className="h-3 w-3" />
                     </div>
-                    <span className="font-medium">info@oppaservices.com</span>
+                      <span className="font-body font-medium">info@oppaservices.com</span>
                   </a>
                 </div>
 
-                <Button asChild className="bg-gradient-corporate hover:shadow-glow transition-all duration-300 hover:scale-105 font-semibold px-6">
+                <Button asChild className="bg-gradient-corporate text-white hover:shadow-glow hover:bg-primary-hover transition-all duration-300 hover:scale-105 font-body font-semibold px-6">
                   <Link to="/contact">Get Quote</Link>
                 </Button>
               </div>
@@ -130,9 +133,9 @@ const Navigation = () => {
                   <Link
                     key={link.href}
                     to={link.href}
-                    className={`font-medium px-4 py-3 rounded-lg transition-all duration-300 mx-4 ${
+                    className={`font-body font-medium px-4 py-3 rounded-lg transition-all duration-300 mx-4 ${
                       isActive(link.href)
-                        ? 'text-primary bg-gradient-corporate text-white shadow-glow'
+                        ? 'bg-gradient-corporate text-white shadow-glow'
                         : 'text-foreground hover:text-primary hover:bg-accent hover:scale-105'
                     }`}
                     onClick={() => setIsOpen(false)}
@@ -148,25 +151,25 @@ const Navigation = () => {
                       <div className="p-2 rounded-full bg-primary text-white">
                         <Phone className="h-4 w-4" />
                       </div>
-                      <span className="font-medium">+254 705 576 746</span>
+                      <span className="font-body font-medium">+254 705 576 746</span>
                     </a>
                     <a href="mailto:info@oppaservices.com" className="flex items-center space-x-3 hover:text-primary transition-all duration-300 p-2 rounded-lg hover:bg-accent">
                       <div className="p-2 rounded-full bg-primary text-white">
                         <Mail className="h-4 w-4" />
                       </div>
-                      <span className="font-medium">info@oppaservices.com</span>
+                      <span className="font-body font-medium">info@oppaservices.com</span>
                     </a>
                     <div className="flex items-center space-x-3 text-muted-foreground p-2">
                       <div className="p-2 rounded-full bg-accent">
                         <MapPin className="h-4 w-4" />
                       </div>
-                      <span className="font-medium text-xs">Elysee Plaza, Kilimani Road</span>
+                      <span className="font-body font-medium text-xs">Elysee Plaza, Kilimani Road</span>
                     </div>
                   </div>
                 </div>
 
                 <div className="px-4 pt-4">
-                  <Button asChild className="w-full bg-gradient-corporate hover:shadow-glow transition-all duration-300 hover:scale-105 font-semibold">
+                  <Button asChild className="w-full bg-gradient-corporate text-white hover:shadow-glow hover:bg-primary-hover transition-all duration-300 hover:scale-105 font-body font-semibold">
                     <Link to="/contact" onClick={() => setIsOpen(false)}>Get Quote</Link>
                   </Button>
                 </div>
