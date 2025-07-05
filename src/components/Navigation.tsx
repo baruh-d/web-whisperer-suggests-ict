@@ -11,6 +11,7 @@ const Navigation = () => {
     { href: '/', label: 'Home' },
     { href: '/services', label: 'Services' },
     { href: '/news', label: 'News & Events' },
+    { href: '/about', label: 'About Us' },
     { href: '/contact', label: 'Contact' },
   ];
 
