@@ -31,12 +31,12 @@ const Index = () => {
       <section className="relative overflow-hidden bg-gradient-hero text-white">
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32 text-center">
-          <h1 className="text-5xl lg:text-7xl font-bold mb-6 text-white font-poppins animate-fade-in">
-            Let us get you, your solutions
-          </h1>
-          <p className="text-xl lg:text-2xl text-primary-foreground/90 mb-8 max-w-3xl mx-auto animate-fade-in">
-            Kenya's leading ICT systems integrator delivering future-proof solutions across Africa
-          </p>
+      <h1 className="text-5xl lg:text-7xl font-bold mb-6 text-white font-display animate-fade-in tracking-tight">
+        Let us get you, your solutions
+      </h1>
+      <p className="text-xl lg:text-2xl text-primary-foreground/90 mb-8 max-w-3xl mx-auto animate-fade-in font-body leading-relaxed">
+        Kenya's leading ICT systems integrator delivering future-proof solutions across Africa
+      </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in">
             <Button size="lg" className="bg-gradient-corporate hover:shadow-glow text-lg px-8 py-4 font-semibold transition-all duration-300 hover:scale-105" asChild>
               <Link to="/contact">Get Your Solution Now</Link>
@@ -202,7 +202,7 @@ const Index = () => {
       <section className="py-16 lg:py-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold font-poppins mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold font-display mb-4 tracking-tight">
               Our ICT Service Categories
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">

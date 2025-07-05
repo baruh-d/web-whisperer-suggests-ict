@@ -133,9 +133,11 @@ export default {
 				'scroll': 'scroll 30s linear infinite'
 			},
 			fontFamily: {
-				'poppins': ['Poppins', 'sans-serif'],
-				'inter': ['Inter', 'sans-serif'],
-				'dm-sans': ['DM Sans', 'sans-serif']
+				'space-grotesk': ['Space Grotesk', 'system-ui', 'sans-serif'],
+				'dm-sans': ['DM Sans', 'system-ui', 'sans-serif'],
+				'inter': ['Inter', 'system-ui', 'sans-serif'],
+				'display': ['Space Grotesk', 'system-ui', 'sans-serif'],
+				'body': ['DM Sans', 'Inter', 'system-ui', 'sans-serif']
 			},
 			backgroundImage: {
 				'gradient-corporate': 'var(--gradient-corporate)',

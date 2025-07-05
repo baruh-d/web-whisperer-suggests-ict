@@ -73,7 +73,8 @@ All colors MUST be HSL.
     --gradient-card: linear-gradient(145deg, hsl(var(--card)) 0%, hsl(var(--accent)) 100%);
     --gradient-elite: linear-gradient(to top left, hsl(var(--primary-glow)) 0%, hsl(var(--primary-hover)) 35%, hsl(var(--primary)) 100%);
     --gradient-glass: linear-gradient(135deg, hsl(var(--card) / 0.8) 0%, hsl(var(--accent) / 0.4) 100%);
-    --gradient-footer: linear-gradient(to right, hsl(var(--primary)) 0%, hsl(var(--primary-dark)) 100%);
+        /* Footer Black Background */
+        background: #000000;
     
     /* Animation variables */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
