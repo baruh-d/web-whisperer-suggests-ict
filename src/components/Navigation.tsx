@@ -13,6 +13,7 @@ const Navigation = () => {
     { href: '/news', label: 'News & Events' },
     { href: '/about', label: 'About Us' },
     { href: '/contact', label: 'Contact' },
+    { href: '/client-portal', label: 'Client Portal' },
   ];
 
   const isActive = (path: string) => location.pathname === path;

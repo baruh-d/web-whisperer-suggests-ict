@@ -28,12 +28,13 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 9%;
 
-    /* OPPA Corporate Blue - Primary brand color */
-    --primary: 215 65% 29%;
+    /* OPPA Corporate Blue - Modern Palette */
+    --primary: 210 79% 46%; /* #1E3A8A - Royal Blue 600 */
     --primary-foreground: 0 0% 98%;
-    --primary-light: 215 65% 39%;
-    --primary-dark: 215 65% 19%;
-    --primary-glow: 215 65% 49%;
+    --primary-light: 217 69% 50%; /* #11468F - Ocean Blue */
+    --primary-dark: 215 38% 31%; /* #243B55 - Deep Indigo */
+    --primary-glow: 216 65% 49%; /* #213E7B - Electric Navy */
+    --primary-hover: 215 43% 36%; /* #2B4C7E - Sapphire Blue */
 
     /* Corporate Black */
     --corporate-black: 0 0% 0%;
@@ -66,12 +67,13 @@ All colors MUST be HSL.
 
     --radius: 0.75rem;
 
-    /* Custom gradients and effects */
-    --gradient-corporate: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-glow)) 100%);
-    --gradient-hero: linear-gradient(135deg, hsl(var(--primary-dark)) 0%, hsl(var(--primary)) 50%, hsl(var(--primary-glow)) 100%);
+    /* Custom gradients and effects - Modern OPPA Blue */
+    --gradient-corporate: linear-gradient(135deg, hsl(var(--primary-light)) 0%, hsl(var(--primary)) 100%);
+    --gradient-hero: linear-gradient(to bottom right, hsl(var(--primary-light)) 0%, hsl(var(--primary)) 100%);
     --gradient-card: linear-gradient(145deg, hsl(var(--card)) 0%, hsl(var(--accent)) 100%);
-    --gradient-elite: linear-gradient(45deg, hsl(var(--primary-dark)) 0%, hsl(var(--primary)) 35%, hsl(var(--primary-light)) 100%);
+    --gradient-elite: linear-gradient(to top left, hsl(var(--primary-glow)) 0%, hsl(var(--primary-hover)) 35%, hsl(var(--primary)) 100%);
     --gradient-glass: linear-gradient(135deg, hsl(var(--card) / 0.8) 0%, hsl(var(--accent) / 0.4) 100%);
+    --gradient-footer: linear-gradient(to right, hsl(var(--primary)) 0%, hsl(var(--primary-dark)) 100%);
     
     /* Animation variables */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
