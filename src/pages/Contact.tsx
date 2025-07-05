@@ -6,10 +6,10 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Phone, Mail, MapPin, Clock, MessageCircle } from 'lucide-react';
-import { services as serviceCategories } from '@/config/services';
+import { services } from '@/config/services';
 
 const Contact = () => {
-  const allServices = serviceCategories.flatMap(category => category.services);
+  const allServices = services;
 
   return (
     <div className="min-h-screen bg-background">

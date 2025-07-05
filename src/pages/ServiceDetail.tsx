@@ -4,15 +4,17 @@ import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { services as serviceCategories } from '@/config/services';
+import { services, serviceCategories, getServicesByCategory } from '@/config/services';
 import { ArrowLeft, CheckCircle, Star, Phone, Mail, ArrowRight } from 'lucide-react';
 
 const ServiceDetail = () => {
   const { id } = useParams<{ id: string }>();
   
   // Find the service
-  const service = serviceCategories.flatMap(category => category.services).find(s => s.id === id);
-  const category = serviceCategories.find(cat => cat.services.some(s => s.id === id));
+  const service = services.find(s => s.id === id);
+  const category = serviceCategories.find(cat => 
+    services.some(s => s.id === id && s.categoryId === cat.id)
+  );
   
   if (!service || !category) {
     return (
@@ -31,7 +33,7 @@ const ServiceDetail = () => {
   }
 
   // Get related services from same category
-  const relatedServices = category.services.filter(s => s.id !== service.id).slice(0, 3);
+  const relatedServices = category ? getServicesByCategory(category.id).filter(s => s.id !== service.id).slice(0, 3) : [];
 
   const keyFeatures = [
     "Professional installation and setup",
@@ -84,13 +86,13 @@ const ServiceDetail = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <Badge className="bg-white/20 text-white mb-4 text-sm px-3 py-1">
-                {category.name}
+                {category.title}
               </Badge>
               <h1 className="text-5xl lg:text-6xl font-bold font-poppins mb-6 animate-fade-in">
                 {service.title}
               </h1>
               <p className="text-xl text-primary-foreground/90 mb-8 animate-fade-in">
-                {service.description}
+                {service.shortDescription}
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button size="lg" className="bg-white text-primary hover:bg-white/90 px-8">
@@ -108,7 +110,7 @@ const ServiceDetail = () => {
               <Card className="bg-white/10 backdrop-blur-sm border-white/20 text-white">
                 <CardContent className="p-8">
                   <div className="flex items-center justify-center h-48 bg-white/10 rounded-lg mb-6">
-                    <service.icon className="h-24 w-24 text-white/70" />
+                    <Star className="h-24 w-24 text-white/70" />
                   </div>
                   <h3 className="text-xl font-bold mb-2">Professional Service</h3>
                   <p className="text-white/80">
@@ -159,7 +161,7 @@ const ServiceDetail = () => {
                 <CardContent className="space-y-4">
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Category:</span>
-                    <span className="font-medium text-foreground">{category.name}</span>
+                    <span className="font-medium text-foreground">{category.title}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Installation:</span>
@@ -231,12 +233,12 @@ const ServiceDetail = () => {
               {relatedServices.map((relatedService) => (
                 <Card key={relatedService.id} className="border-0 shadow-card hover:shadow-hover transition-all duration-300 hover:scale-105 bg-gradient-card group">
                   <CardContent className="p-6">
-                    <relatedService.icon className="h-12 w-12 text-primary mb-4" />
+                    <Star className="h-12 w-12 text-primary mb-4" />
                     <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
                       {relatedService.title}
                     </h3>
                     <p className="text-muted-foreground text-sm mb-4">
-                      {relatedService.description}
+                      {relatedService.shortDescription}
                     </p>
                     <Button variant="outline" size="sm" asChild className="w-full group-hover:bg-accent transition-colors">
                       <Link to={`/services/${relatedService.id}`}>
