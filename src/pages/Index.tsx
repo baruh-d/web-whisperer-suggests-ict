@@ -8,6 +8,24 @@ import { serviceCategories } from '@/config/services';
 import professionalMeetingImage from '@/assets/professional-meeting.jpg';
 import dataCenterImage from '@/assets/data-center.jpg';
 
+// Partner Logos
+import microsoftLogo from '@/assets/partners/microsoft-logo.png';
+import ciscoLogo from '@/assets/partners/cisco-logo.png';
+import hpLogo from '@/assets/partners/hp-logo.png';
+import dellLogo from '@/assets/partners/dell-logo.png';
+import lenovoLogo from '@/assets/partners/lenovo-logo.png';
+import intelLogo from '@/assets/partners/intel-logo.png';
+import vmwareLogo from '@/assets/partners/vmware-logo.png';
+import canonLogo from '@/assets/partners/canon-logo.png';
+import fortinetLogo from '@/assets/partners/fortinet-logo.png';
+import ubiquitiLogo from '@/assets/partners/ubiquiti-logo.png';
+import epsonLogo from '@/assets/partners/epson-logo.png';
+import mikrotikLogo from '@/assets/partners/mikrotik-logo.png';
+import adobeLogo from '@/assets/partners/adobe-logo.png';
+import autodeskLogo from '@/assets/partners/autodesk-logo.png';
+import oracleLogo from '@/assets/partners/oracle-logo.png';
+import sapLogo from '@/assets/partners/sap-logo.png';
+
 const Index = () => {
   const stats = [
     { icon: Users, label: 'Happy Clients', value: '500+' },
@@ -23,6 +41,26 @@ const Index = () => {
     'Future-Proof Solutions',
     'Kenya-Based Team',
     'Competitive Pricing'
+  ];
+
+  // Partner logos with names for better accessibility
+  const partners = [
+    { name: 'Microsoft', logo: microsoftLogo },
+    { name: 'Cisco Systems', logo: ciscoLogo },
+    { name: 'HP Inc.', logo: hpLogo },
+    { name: 'Dell Technologies', logo: dellLogo },
+    { name: 'Lenovo', logo: lenovoLogo },
+    { name: 'Intel Corporation', logo: intelLogo },
+    { name: 'VMware', logo: vmwareLogo },
+    { name: 'Canon', logo: canonLogo },
+    { name: 'Fortinet', logo: fortinetLogo },
+    { name: 'Ubiquiti Networks', logo: ubiquitiLogo },
+    { name: 'Epson', logo: epsonLogo },
+    { name: 'MikroTik', logo: mikrotikLogo },
+    { name: 'Adobe', logo: adobeLogo },
+    { name: 'Autodesk', logo: autodeskLogo },
+    { name: 'Oracle', logo: oracleLogo },
+    { name: 'SAP', logo: sapLogo },
   ];
 
   return (
@@ -89,20 +127,31 @@ const Index = () => {
           </div>
           
           <div className="relative overflow-hidden">
-            <div className="flex animate-scroll space-x-12 items-center">
-              {/* Partner logos - using placeholder elements */}
-              {[
-                'Microsoft', 'Cisco', 'HP', 'Dell', 'Lenovo', 'Motorola', 
-                'Yamaha', 'JBL', 'Peavey', 'Kenwood', 'Codan', 'Icom'
-              ].concat([
-                'Microsoft', 'Cisco', 'HP', 'Dell', 'Lenovo', 'Motorola', 
-                'Yamaha', 'JBL', 'Peavey', 'Kenwood', 'Codan', 'Icom'
-              ]).map((partner, index) => (
+            <div className="flex animate-scroll space-x-8 items-center">
+              {/* First set of partner logos */}
+              {partners.map((partner, index) => (
                 <div 
-                  key={index}
-                  className="flex-shrink-0 w-32 h-16 bg-gradient-card border border-border rounded-lg flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110 hover:shadow-card"
+                  key={`first-${index}`}
+                  className="flex-shrink-0 w-40 h-20 bg-card border border-border rounded-lg flex items-center justify-center p-4 grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110 hover:shadow-card"
                 >
-                  <span className="text-sm font-semibold text-muted-foreground">{partner}</span>
+                  <img 
+                    src={partner.logo} 
+                    alt={`${partner.name} logo`}
+                    className="max-w-full max-h-full object-contain filter opacity-70 hover:opacity-100 transition-opacity"
+                  />
+                </div>
+              ))}
+              {/* Duplicate set for seamless scrolling */}
+              {partners.map((partner, index) => (
+                <div 
+                  key={`second-${index}`}
+                  className="flex-shrink-0 w-40 h-20 bg-card border border-border rounded-lg flex items-center justify-center p-4 grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110 hover:shadow-card"
+                >
+                  <img 
+                    src={partner.logo} 
+                    alt={`${partner.name} logo`}
+                    className="max-w-full max-h-full object-contain filter opacity-70 hover:opacity-100 transition-opacity"
+                  />
                 </div>
               ))}
             </div>
