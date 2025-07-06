@@ -7,6 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Phone, Mail, MapPin, Clock, MessageCircle } from 'lucide-react';
 import { services } from '@/config/services';
+import contactConsultationImage from '@/assets/contact-consultation.jpg';
 
 const Contact = () => {
   const allServices = services;
@@ -17,7 +18,14 @@ const Contact = () => {
       
       {/* Hero Section */}
       <section className="relative py-20 bg-gradient-hero text-white overflow-hidden">
-        <div className="absolute inset-0 bg-corporate-black/20"></div>
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url('${contactConsultationImage}')`,
+            backgroundBlendMode: 'overlay'
+          }}
+        ></div>
+        <div className="absolute inset-0 bg-corporate-black/60"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-5xl lg:text-7xl font-bold font-poppins mb-6 animate-fade-in">
             Reach Out to Us

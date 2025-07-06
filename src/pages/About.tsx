@@ -3,6 +3,8 @@ import Footer from '@/components/Footer';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Users, Target, Eye, Heart, Award, Building2, Globe, Shield } from 'lucide-react';
+import teamCollaborationImage from '@/assets/team-collaboration.jpg';
+import officeBuildingImage from '@/assets/office-building.jpg';
 
 const About = () => {
   const stats = [
@@ -18,7 +20,14 @@ const About = () => {
       
       {/* Hero Section */}
       <section className="relative py-20 bg-gradient-hero text-white overflow-hidden">
-        <div className="absolute inset-0 bg-corporate-black/20"></div>
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url('${teamCollaborationImage}')`,
+            backgroundBlendMode: 'overlay'
+          }}
+        ></div>
+        <div className="absolute inset-0 bg-corporate-black/60"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-5xl lg:text-7xl font-bold font-poppins mb-6 animate-fade-in">
             About OPPA Services
@@ -80,17 +89,25 @@ const About = () => {
               </div>
             </div>
             <div className="relative">
-              <div className="bg-gradient-corporate rounded-2xl p-8 text-white">
-                <Building2 className="h-16 w-16 mb-6 opacity-80" />
-                <h3 className="text-2xl font-bold mb-4">Our Headquarters</h3>
-                <p className="text-primary-foreground/90 mb-4">
-                  Located in the prestigious Elysee Plaza, our modern offices reflect 
-                  our commitment to excellence and innovation.
-                </p>
-                <div className="text-sm opacity-80">
-                  <p>Elysee Plaza, 2nd Floor</p>
-                  <p>Kilimani Road, Nairobi</p>
-                  <p>P.O. Box 1455 – 00200</p>
+              <div className="relative bg-gradient-corporate rounded-2xl p-8 text-white overflow-hidden">
+                <div 
+                  className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
+                  style={{
+                    backgroundImage: `url('${officeBuildingImage}')`,
+                  }}
+                ></div>
+                <div className="relative z-10">
+                  <Building2 className="h-16 w-16 mb-6 opacity-80" />
+                  <h3 className="text-2xl font-bold mb-4">Our Headquarters</h3>
+                  <p className="text-primary-foreground/90 mb-4">
+                    Located in the prestigious Elysee Plaza, our modern offices reflect 
+                    our commitment to excellence and innovation.
+                  </p>
+                  <div className="text-sm opacity-80">
+                    <p>Elysee Plaza, 2nd Floor</p>
+                    <p>Kilimani Road, Nairobi</p>
+                    <p>P.O. Box 1455 – 00200</p>
+                  </div>
                 </div>
               </div>
             </div>

@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Calendar, Eye, Tag, ArrowRight, Newspaper, Trophy, Users, Briefcase, Building, Globe } from 'lucide-react';
 import { useNewsAPI } from '@/hooks/useNewsAPI';
 import { toast } from '@/hooks/use-toast';
+import newsMediaCenterImage from '@/assets/news-media-center.jpg';
 
 const News = () => {
   const { news, loading, error, getNewsByCategory, getFeaturedNews } = useNewsAPI();
@@ -53,7 +54,14 @@ const News = () => {
       
       {/* Hero Section */}
       <section className="relative py-20 bg-gradient-hero text-white overflow-hidden">
-        <div className="absolute inset-0 bg-corporate-black/20"></div>
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url('${newsMediaCenterImage}')`,
+            backgroundBlendMode: 'overlay'
+          }}
+        ></div>
+        <div className="absolute inset-0 bg-corporate-black/60"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-5xl lg:text-7xl font-bold font-poppins mb-6 animate-fade-in">
             News & Events

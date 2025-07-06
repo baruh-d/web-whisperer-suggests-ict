@@ -5,6 +5,8 @@ import { ArrowRight, CheckCircle, Users, Award, Globe, Zap, Phone } from 'lucide
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { serviceCategories } from '@/config/services';
+import professionalMeetingImage from '@/assets/professional-meeting.jpg';
+import dataCenterImage from '@/assets/data-center.jpg';
 
 const Index = () => {
   const stats = [
@@ -264,9 +266,15 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Why Choose OPPA */}
-      <section className="py-16 lg:py-20 bg-accent/20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Why Choose OPPA - Enhanced with Image */}
+      <section className="py-16 lg:py-20 bg-accent/20 relative overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-10"
+          style={{
+            backgroundImage: `url('${professionalMeetingImage}')`,
+          }}
+        ></div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-foreground mb-4 font-poppins">
               Why Choose OPPA Services?
@@ -277,26 +285,59 @@ const Index = () => {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center">
+            <div className="text-center bg-card/80 backdrop-blur-sm rounded-xl p-6 border border-border/50">
               <div className="w-16 h-16 bg-gradient-corporate rounded-full flex items-center justify-center mx-auto mb-4">
                 <Award className="h-8 w-8 text-white" />
               </div>
               <h3 className="text-xl font-bold text-foreground mb-2">AGPO Certified</h3>
               <p className="text-muted-foreground">Government-certified excellence you can trust</p>
             </div>
-            <div className="text-center">
+            <div className="text-center bg-card/80 backdrop-blur-sm rounded-xl p-6 border border-border/50">
               <div className="w-16 h-16 bg-gradient-corporate rounded-full flex items-center justify-center mx-auto mb-4">
                 <Zap className="h-8 w-8 text-white" />
               </div>
               <h3 className="text-xl font-bold text-foreground mb-2">24+ Services</h3>
               <p className="text-muted-foreground">Comprehensive ICT solutions under one roof</p>
             </div>
-            <div className="text-center">
+            <div className="text-center bg-card/80 backdrop-blur-sm rounded-xl p-6 border border-border/50">
               <div className="w-16 h-16 bg-gradient-corporate rounded-full flex items-center justify-center mx-auto mb-4">
                 <Globe className="h-8 w-8 text-white" />
               </div>
               <h3 className="text-xl font-bold text-foreground mb-2">Africa-Wide</h3>
               <p className="text-muted-foreground">Serving clients across Kenya and East Africa</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Technology Showcase Section */}
+      <section className="py-16 bg-background">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-foreground mb-4 font-poppins">
+              Technology Infrastructure
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              State-of-the-art facilities and cutting-edge technology solutions
+            </p>
+          </div>
+          
+          <div className="relative rounded-2xl overflow-hidden shadow-elite hover:shadow-hover transition-all duration-300">
+            <img 
+              src={dataCenterImage} 
+              alt="Advanced Data Center Infrastructure" 
+              className="w-full h-96 object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-corporate-black/80 via-transparent to-transparent"></div>
+            <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
+              <h3 className="text-2xl font-bold mb-2">Advanced Infrastructure</h3>
+              <p className="text-primary-foreground/90 mb-4">
+                Our state-of-the-art data centers and network infrastructure ensure reliable, 
+                scalable solutions for all your ICT needs.
+              </p>
+              <Button variant="outline" className="border-white/30 text-white hover:bg-white/20">
+                Learn More About Our Infrastructure
+              </Button>
             </div>
           </div>
         </div>
