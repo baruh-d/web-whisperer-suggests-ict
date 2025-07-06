@@ -29,7 +29,14 @@ const Index = () => {
       
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-hero text-white">
-        <div className="absolute inset-0 bg-black/20"></div>
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url('src/assets/tech-workspace.jpg')`,
+            backgroundBlendMode: 'overlay'
+          }}
+        ></div>
+        <div className="absolute inset-0 bg-corporate-black/60"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32 text-center">
       <h1 className="text-5xl lg:text-7xl font-bold mb-6 text-white font-display animate-fade-in tracking-tight">
         Let us get you, your solutions
@@ -48,7 +55,8 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Enhanced Stats Section */}
+      {/* Enhanced Stats Section - COMMENTED OUT */}
+      {/*
       <section className="py-16 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
@@ -64,6 +72,7 @@ const Index = () => {
           </div>
         </div>
       </section>
+      */}
 
       {/* Partners Logo Carousel */}
       <section className="py-16 bg-accent/20">

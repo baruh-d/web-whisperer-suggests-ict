@@ -3,76 +3,31 @@ import Footer from '@/components/Footer';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Calendar, Eye, Tag, ArrowRight, Newspaper, Trophy, Users, Briefcase } from 'lucide-react';
+import { Calendar, Eye, Tag, ArrowRight, Newspaper, Trophy, Users, Briefcase, Building, Globe } from 'lucide-react';
+import { useNewsAPI } from '@/hooks/useNewsAPI';
+import { toast } from '@/hooks/use-toast';
 
 const News = () => {
+  const { news, loading, error, getNewsByCategory, getFeaturedNews } = useNewsAPI();
+  
   const newsCategories = [
     { id: 'all', label: 'All News', icon: Newspaper },
-    { id: 'projects', label: 'Project Spotlights', icon: Briefcase },
-    { id: 'achievements', label: 'Achievements', icon: Trophy },
-    { id: 'team', label: 'Team News', icon: Users },
-    { id: 'industry', label: 'Industry Insights', icon: Tag },
+    { id: 'company', label: 'Company News', icon: Briefcase },
+    { id: 'ministry', label: 'Ministry Updates', icon: Building },
+    { id: 'private', label: 'Industry News', icon: Globe },
+    { id: 'industry', label: 'Tech Insights', icon: Tag },
   ];
 
-  const newsItems = [
-    {
-      id: 1,
-      title: "OPPA Services Completes Major Video Wall Installation at KICC",
-      excerpt: "Successfully delivered and installed a state-of-the-art 3x3 video wall system at the Kenyatta International Convention Centre, enhancing their conference capabilities.",
-      category: 'projects',
-      date: '2024-01-15',
-      image: '/images/news/kicc-video-wall.jpg',
-      featured: true
-    },
-    {
-      id: 2,
-      title: "New Partnership with Leading Global Tech Manufacturer",
-      excerpt: "OPPA Services announces strategic partnership to bring cutting-edge networking solutions to the Kenyan market, expanding our service offerings.",
-      category: 'achievements',
-      date: '2024-01-10',
-      image: '/images/news/partnership-announcement.jpg',
-      featured: false
-    },
-    {
-      id: 3,
-      title: "Team Certification: Advanced Network Security Training",
-      excerpt: "Our technical team successfully completed advanced cybersecurity certifications, further strengthening our security solutions expertise.",
-      category: 'team',
-      date: '2024-01-05',
-      image: '/images/news/team-certification.jpg',
-      featured: false
-    },
-    {
-      id: 4,
-      title: "Smart Office Automation Trends in 2024",
-      excerpt: "Exploring the latest trends in office automation and how businesses can leverage smart technology to improve efficiency and reduce costs.",
-      category: 'industry',
-      date: '2023-12-28',
-      image: '/images/news/smart-office-trends.jpg',
-      featured: false
-    },
-    {
-      id: 5,
-      title: "OPPA Services Wins Best ICT Integrator Award",
-      excerpt: "Recognized as the leading ICT systems integrator in Kenya at the annual Technology Excellence Awards ceremony.",
-      category: 'achievements',
-      date: '2023-12-20',
-      image: '/images/news/award-ceremony.jpg',
-      featured: false
-    },
-    {
-      id: 6,
-      title: "Successful CCTV System Deployment at Manufacturing Plant",
-      excerpt: "Completed comprehensive security system installation including 64-camera CCTV network with AI-powered analytics for enhanced monitoring.",
-      category: 'projects',
-      date: '2023-12-15',
-      image: '/images/news/manufacturing-cctv.jpg',
-      featured: false
-    }
-  ];
+  const featuredNews = getFeaturedNews();
+  const regularNews = news.filter(item => !item.featured);
 
-  const featuredNews = newsItems.find(item => item.featured);
-  const regularNews = newsItems.filter(item => !item.featured);
+  if (error) {
+    toast({
+      title: "Error loading news",
+      description: error,
+      variant: "destructive",
+    });
+  }
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-US', {
@@ -179,8 +134,14 @@ const News = () => {
       <section className="py-16 bg-accent/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-foreground mb-8 font-poppins">Latest Updates</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {regularNews.map((item) => (
+          {loading ? (
+            <div className="text-center py-12">
+              <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary mx-auto"></div>
+              <p className="mt-4 text-muted-foreground">Loading latest news...</p>
+            </div>
+          ) : (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {regularNews.map((item) => (
               <Card key={item.id} className="overflow-hidden border-0 shadow-card hover:shadow-hover transition-all duration-300 hover:scale-105 bg-card group">
                 <div className="relative h-48 bg-gradient-corporate">
                   <div className="absolute inset-0 flex items-center justify-center">
@@ -212,8 +173,9 @@ const News = () => {
                   </Button>
                 </CardContent>
               </Card>
-            ))}
-          </div>
+                ))}
+              </div>
+            )}
         </div>
       </section>
 

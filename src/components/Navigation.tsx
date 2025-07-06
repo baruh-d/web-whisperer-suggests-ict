@@ -51,12 +51,11 @@ const Navigation = () => {
             {/* Logo */}
             <Link to="/" className="flex items-center space-x-4 group">
               <div className="relative">
-                {/* Logo Placeholder - Replace with actual logo */}
-                <div className="w-16 h-16 bg-gradient-corporate rounded-xl flex items-center justify-center shadow-glow group-hover:shadow-hover transition-all duration-300 group-hover:scale-105 border-2 border-white/20">
-                  <div className="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center backdrop-blur-sm">
-                    <span className="text-white font-display font-bold text-lg">LOGO</span>
-                  </div>
-                </div>
+                <img 
+                  src="/lovable-uploads/233c08a7-ad64-4f31-bb2f-d741e2584a0f.png" 
+                  alt="OPPA Services Logo" 
+                  className="w-16 h-16 rounded-xl shadow-glow group-hover:shadow-hover transition-all duration-300 group-hover:scale-105"
+                />
                 <div className="absolute -top-1 -right-1 w-4 h-4 bg-accent-blue rounded-full animate-pulse"></div>
               </div>
               <div className="hidden sm:block">

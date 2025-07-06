@@ -14,12 +14,11 @@ const Footer = () => {
           {/* Company Info */}
           <div className="space-y-6">
             <div className="flex items-center space-x-4">
-              <div className="relative">
-                <div className="w-14 h-14 bg-gradient-corporate rounded-xl flex items-center justify-center shadow-glow">
-                  <span className="text-white font-bold text-2xl font-poppins">O</span>
-                </div>
-                <div className="absolute -top-1 -right-1 w-4 h-4 bg-primary-glow rounded-full animate-pulse"></div>
-              </div>
+              <img 
+                src="/lovable-uploads/233c08a7-ad64-4f31-bb2f-d741e2584a0f.png" 
+                alt="OPPA Services Logo" 
+                className="w-14 h-14 rounded-xl shadow-glow"
+              />
               <div>
                 <div className="font-poppins font-bold text-xl text-white">
                   OPPA Services

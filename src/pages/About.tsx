@@ -33,7 +33,8 @@ const About = () => {
         </div>
       </section>
 
-      {/* Stats Section */}
+      {/* Stats Section - COMMENTED OUT */}
+      {/*
       <section className="py-16 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
@@ -49,6 +50,7 @@ const About = () => {
           </div>
         </div>
       </section>
+      */}
 
       {/* Company Story */}
       <section className="py-20 bg-accent/20">
@@ -208,7 +210,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* Team Section Placeholder */}
+      {/* Team Section */}
       <section className="py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -220,13 +222,65 @@ const About = () => {
             </p>
           </div>
 
-          <div className="bg-gradient-card rounded-2xl border border-border p-12 text-center">
-            <Users className="h-20 w-20 text-primary mx-auto mb-6" />
-            <h3 className="text-2xl font-bold text-foreground mb-4">Team Profiles Coming Soon</h3>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              We're preparing detailed profiles of our leadership team and technical experts. 
-              Check back soon to meet the people who make OPPA Services exceptional.
-            </p>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                name: "James Kiprotich",
+                position: "Chief Executive Officer",
+                expertise: "Strategic Leadership & Business Development",
+                experience: "15+ years in ICT industry",
+                initials: "JK"
+              },
+              {
+                name: "Sarah Wanjiku",
+                position: "Chief Technology Officer", 
+                expertise: "Network Infrastructure & Systems Integration",
+                experience: "12+ years in technical leadership",
+                initials: "SW"
+              },
+              {
+                name: "Michael Ochieng",
+                position: "Head of Operations",
+                expertise: "Project Management & Client Relations",
+                experience: "10+ years in operations management",
+                initials: "MO"
+              },
+              {
+                name: "Grace Mutua",
+                position: "Lead Network Engineer",
+                expertise: "Cisco Systems & Network Security",
+                experience: "8+ years in network engineering",
+                initials: "GM"
+              },
+              {
+                name: "David Mwangi",
+                position: "Security Systems Specialist",
+                expertise: "CCTV & Access Control Systems",
+                experience: "9+ years in security solutions",
+                initials: "DM"
+              },
+              {
+                name: "Linda Akinyi",
+                position: "Business Development Manager",
+                expertise: "Client Acquisition & Market Development",
+                experience: "7+ years in business development",
+                initials: "LA"
+              }
+            ].map((member, index) => (
+              <Card key={index} className="text-center border-0 shadow-card hover:shadow-hover transition-all duration-300 hover:scale-105 bg-gradient-card">
+                <CardContent className="p-6">
+                  <div className="w-20 h-20 bg-gradient-corporate rounded-full flex items-center justify-center mx-auto mb-4 text-white font-bold text-xl">
+                    {member.initials}
+                  </div>
+                  <h3 className="text-xl font-bold text-foreground mb-2">{member.name}</h3>
+                  <p className="text-primary font-semibold mb-2">{member.position}</p>
+                  <p className="text-sm text-muted-foreground mb-3">{member.expertise}</p>
+                  <Badge variant="outline" className="text-xs">
+                    {member.experience}
+                  </Badge>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
