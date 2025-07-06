@@ -3,25 +3,63 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { ArrowRight, ExternalLink } from 'lucide-react';
+import { ArrowRight, ExternalLink, Home, ChevronRight } from 'lucide-react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { serviceCategories, services, getServicesByCategory } from '@/config/services';
+import servicesNetworkImage from '@/assets/services-network.jpg';
+import servicesAudioVisualImage from '@/assets/services-audiovisual.jpg';
+import servicesSecurityImage from '@/assets/services-security.jpg';
+import servicesAutomationImage from '@/assets/services-automation.jpg';
+import servicesSoftwareImage from '@/assets/services-software.jpg';
 
 const Services = () => {
   const [activeCategory, setActiveCategory] = useState('infrastructure');
+
+  const getServiceImage = (categoryId: string) => {
+    const imageMap: { [key: string]: string } = {
+      'infrastructure': servicesNetworkImage,
+      'audiovisual': servicesAudioVisualImage,
+      'security': servicesSecurityImage,
+      'automation': servicesAutomationImage,
+      'software': servicesSoftwareImage,
+      'computing': servicesNetworkImage,
+    };
+    return imageMap[categoryId] || servicesNetworkImage;
+  };
 
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
       
+      {/* Breadcrumb Navigation */}
+      <section className="bg-accent/20 py-4 border-b border-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <nav className="flex items-center space-x-2 text-sm">
+            <Link to="/" className="flex items-center text-muted-foreground hover:text-primary transition-colors">
+              <Home className="h-4 w-4 mr-1" />
+              Home
+            </Link>
+            <ChevronRight className="h-4 w-4 text-muted-foreground" />
+            <span className="text-foreground font-medium">Services</span>
+          </nav>
+        </div>
+      </section>
+      
       {/* Hero Section */}
-      <section className="bg-gradient-hero text-white py-16 lg:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="relative bg-gradient-hero text-white py-16 lg:py-24 overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
+          style={{
+            backgroundImage: `url('${servicesNetworkImage}')`,
+          }}
+        ></div>
+        <div className="absolute inset-0 bg-corporate-black/60"></div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins mb-6">
             Our ICT Services
           </h1>
-          <p className="text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-primary-foreground/90 max-w-3xl mx-auto leading-relaxed">
             Comprehensive ICT solutions designed to transform your business operations. 
             From infrastructure to software, we've got you covered.
           </p>
@@ -76,15 +114,15 @@ const Services = () => {
                         {/* Service Image */}
                         <div className="relative overflow-hidden rounded-t-lg">
                           <img 
-                            src={`${service.image}?w=400&h=200&fit=crop`}
+                            src={getServiceImage(category.id)}
                             alt={service.title}
                             className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                           />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          <div className="absolute inset-0 bg-gradient-to-t from-corporate-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                             <div className="absolute bottom-4 left-4 right-4">
                               <Link
                                 to={`/services/${service.id}`}
-                                className="inline-flex items-center text-white text-sm font-medium"
+                                className="inline-flex items-center text-white text-sm font-medium hover:text-primary-glow transition-colors"
                               >
                                 View Details <ExternalLink className="ml-1 h-4 w-4" />
                               </Link>
@@ -120,7 +158,7 @@ const Services = () => {
                           </div>
 
                           <div className="pt-4 border-t border-border">
-                            <Button asChild variant="outline" className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                            <Button asChild variant="corporate" className="w-full transition-all duration-300">
                               <Link to={`/services/${service.id}`}>
                                 Learn More <ArrowRight className="ml-2 h-4 w-4" />
                               </Link>
@@ -137,7 +175,7 @@ const Services = () => {
                   <p className="text-muted-foreground mb-4">
                     Need a custom solution in {category.title.toLowerCase()}?
                   </p>
-                  <Button asChild className="bg-gradient-kenya hover:opacity-90 transition-opacity">
+                  <Button asChild variant="corporate" size="lg">
                     <Link to="/contact">
                       Get Custom Quote <ArrowRight className="ml-2 h-5 w-5" />
                     </Link>
@@ -161,13 +199,13 @@ const Services = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="bg-gradient-kenya hover:opacity-90 transition-opacity">
+            <Button asChild variant="corporate" size="lg">
               <Link to="/contact">
                 Request Custom Solution <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
-            <Button asChild variant="outline" size="lg">
-              <a href="tel:+254700000000">Call Us Directly</a>
+            <Button asChild variant="outline" size="lg" className="hover:bg-primary hover:text-primary-foreground">
+              <a href="tel:+254705576746">Call Us Directly</a>
             </Button>
           </div>
         </div>

@@ -60,9 +60,9 @@ const Navigation = () => {
               </div>
               <div className="hidden sm:block">
                 <div className="font-display font-bold text-2xl text-foreground group-hover:text-primary transition-colors">
-                  OPPA Services
+                  OPPA <span className="text-primary">Services</span>
                 </div>
-                <div className="text-sm text-muted-foreground font-body font-medium tracking-wide">
+                <div className="text-sm text-primary font-body font-semibold tracking-wide">
                   ICT Systems Integration
                 </div>
               </div>

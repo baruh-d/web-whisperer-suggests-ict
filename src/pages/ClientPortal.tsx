@@ -1,9 +1,11 @@
+import { Link } from 'react-router-dom';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Users, FileText, CreditCard, HeadphonesIcon, Settings, Calendar, BarChart3, Bell, Shield } from 'lucide-react';
+import { Users, FileText, CreditCard, HeadphonesIcon, Settings, Calendar, BarChart3, Bell, Shield, Home, ChevronRight } from 'lucide-react';
+import clientPortalPreviewImage from '@/assets/client-portal-preview.jpg';
 
 const ClientPortal = () => {
   const portalFeatures = [
@@ -49,11 +51,31 @@ const ClientPortal = () => {
     <div className="min-h-screen bg-background">
       <Navigation />
       
+      {/* Breadcrumb Navigation */}
+      <section className="bg-accent/20 py-4 border-b border-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <nav className="flex items-center space-x-2 text-sm">
+            <Link to="/" className="flex items-center text-muted-foreground hover:text-primary transition-colors">
+              <Home className="h-4 w-4 mr-1" />
+              Home
+            </Link>
+            <ChevronRight className="h-4 w-4 text-muted-foreground" />
+            <span className="text-foreground font-medium">Client Portal</span>
+          </nav>
+        </div>
+      </section>
+      
       {/* Hero Section */}
       <section className="relative py-20 bg-gradient-hero text-white overflow-hidden">
-        <div className="absolute inset-0 bg-primary-dark/20"></div>
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
+          style={{
+            backgroundImage: `url('${clientPortalPreviewImage}')`,
+          }}
+        ></div>
+        <div className="absolute inset-0 bg-corporate-black/60"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <Badge className="bg-white/20 text-white text-lg px-6 py-2 mb-6">
+          <Badge className="bg-white/20 text-white text-lg px-6 py-2 mb-6 hover:bg-white/30 transition-colors">
             <Settings className="h-5 w-5 mr-2" />
             Coming Soon
           </Badge>
@@ -145,17 +167,29 @@ const ClientPortal = () => {
             </div>
             
             <div className="relative">
-              <Card className="bg-gradient-glass backdrop-blur-sm border-primary/20 text-center p-12">
-                <div className="flex items-center justify-center h-48 bg-primary/10 rounded-lg mb-6">
-                  <Settings className="h-24 w-24 text-primary/50" />
+              <Card className="bg-gradient-glass backdrop-blur-sm border-primary/20 overflow-hidden">
+                <div className="relative">
+                  <img 
+                    src={clientPortalPreviewImage} 
+                    alt="Client Portal Preview" 
+                    className="w-full h-64 object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-corporate-black/80 to-transparent"></div>
+                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                    <h3 className="text-2xl font-bold mb-2">Portal Preview</h3>
+                    <p className="text-primary-foreground/90 mb-4">
+                      Modern, intuitive interface designed for efficiency
+                    </p>
+                  </div>
                 </div>
-                <h3 className="text-2xl font-bold text-foreground mb-4">Portal Preview</h3>
-                <p className="text-muted-foreground mb-6">
-                  We're working hard to bring you the most intuitive and powerful client portal experience.
-                </p>
-                <Badge className="bg-primary/20 text-primary px-4 py-2">
-                  Launching Q2 2024
-                </Badge>
+                <div className="p-6 text-center">
+                  <p className="text-muted-foreground mb-4">
+                    We're working hard to bring you the most intuitive and powerful client portal experience.
+                  </p>
+                  <Badge className="bg-primary/20 text-primary px-4 py-2">
+                    Launching Q2 2024
+                  </Badge>
+                </div>
               </Card>
             </div>
           </div>
@@ -174,11 +208,11 @@ const ClientPortal = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-white text-primary hover:bg-white/90 text-lg px-8 py-4 font-semibold transition-all duration-300 hover:scale-105">
-              Register Interest
+            <Button asChild size="lg" className="bg-white text-primary hover:bg-white/90 text-lg px-8 py-4 font-semibold transition-all duration-300 hover:scale-105">
+              <Link to="/contact">Register Interest</Link>
             </Button>
-            <Button variant="outline" size="lg" className="border-white/30 text-white hover:bg-white/20 text-lg px-8 py-4 font-semibold transition-all duration-300 hover:scale-105">
-              Learn More
+            <Button asChild variant="outline" size="lg" className="border-white/30 text-white hover:bg-white/20 text-lg px-8 py-4 font-semibold transition-all duration-300 hover:scale-105">
+              <Link to="/contact">Learn More</Link>
             </Button>
           </div>
         </div>
