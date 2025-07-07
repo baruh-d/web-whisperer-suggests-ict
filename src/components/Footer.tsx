@@ -15,7 +15,7 @@ const Footer = () => {
           <div className="space-y-6">
             <div className="flex items-center space-x-4">
               <img 
-                src="/lovable-uploads/233c08a7-ad64-4f31-bb2f-d741e2584a0f.png" 
+                src="/logo-oppa-design.png" 
                 alt="OPPA Services Logo" 
                 className="w-14 h-14 rounded-xl shadow-glow"
               />

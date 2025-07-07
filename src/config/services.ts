@@ -1,3 +1,16 @@
+import { 
+  Server, Shield, Mic, Cpu, Users, Code, ArrowRight, Zap 
+} from 'lucide-react';
+
+// Icon mapping
+export const iconMap = {
+  Server: Server,
+  Shield: Shield,
+  Mic: Mic,
+  Cpu: Cpu,
+  Users: Users,
+  Code: Code,
+};
 export interface Service {
   id: string;
   title: string;

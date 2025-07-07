@@ -5,14 +5,13 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { services, serviceCategories, getServicesByCategory } from '@/config/services';
-import { ArrowLeft, CheckCircle, Star, Phone, Mail, ArrowRight } from 'lucide-react';
+import { ArrowLeft, CheckCircle, Phone, Mail, ArrowRight } from 'lucide-react';
 
 const ServiceDetail = () => {
   const { id } = useParams<{ id: string }>();
-  
-  // Find the service
+
   const service = services.find(s => s.id === id);
-  const category = serviceCategories.find(cat => 
+  const category = serviceCategories.find(cat =>
     services.some(s => s.id === id && s.categoryId === cat.id)
   );
   
@@ -32,188 +31,161 @@ const ServiceDetail = () => {
     );
   }
 
-  // Get related services from same category
-  const relatedServices = category ? getServicesByCategory(category.id).filter(s => s.id !== service.id).slice(0, 3) : [];
+  const relatedServices = category
+    ? getServicesByCategory(category.id).filter(s => s.id !== service.id).slice(0, 3)
+    : [];
 
   const keyFeatures = [
-    "Professional installation and setup",
-    "Comprehensive training and support",
-    "24/7 technical assistance",
-    "Scalable solution architecture",
-    "Integration with existing systems",
-    "Warranty and maintenance packages"
+    'Professional installation and setup',
+    'Comprehensive training and support',
+    '24/7 technical assistance',
+    'Scalable solution architecture',
+    'Integration with existing systems',
+    'Warranty and maintenance packages'
   ];
 
   const benefits = [
-    "Increased operational efficiency",
-    "Enhanced security and reliability",
-    "Cost-effective implementation",
-    "Future-proof technology",
-    "Expert ongoing support",
-    "Improved business productivity"
+    'Increased operational efficiency',
+    'Enhanced security and reliability',
+    'Cost-effective implementation',
+    'Future-proof technology',
+    'Expert ongoing support',
+    'Improved business productivity'
   ];
 
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
-      
-      {/* Breadcrumbs */}
-      <section className="py-4 bg-accent/20 border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center space-x-2 text-sm">
-            <Link to="/" className="text-muted-foreground hover:text-primary">Home</Link>
-            <span className="text-muted-foreground">/</span>
-            <Link to="/services" className="text-muted-foreground hover:text-primary">Services</Link>
-            <span className="text-muted-foreground">/</span>
-            <span className="text-foreground font-medium">{service.title}</span>
-          </div>
-        </div>
-      </section>
 
-      {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-hero text-white overflow-hidden">
-        <div className="absolute inset-0 bg-corporate-black/20"></div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center mb-6">
-            <Button variant="outline" size="sm" asChild className="bg-white/20 border-white/30 text-white hover:bg-white/30">
-              <Link to="/services">
-                <ArrowLeft className="h-4 w-4 mr-2" />
+      {/* Hero Section with Full-width Background */}
+      <section className="relative py-32 lg:py-40 text-white">
+        <div 
+          className="absolute inset-0 bg-cover bg-center z-0"
+          style={{ backgroundImage: `url('/service-covers/${service.id}-hero.jpg')` }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent"></div>
+        </div>
+        
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center mb-8">
+            <Button variant="ghost" size="sm" asChild className="group text-white hover:bg-white/10">
+              <Link to="/services" className="flex items-center">
+                <ArrowLeft className="h-4 w-4 mr-2 transition-transform group-hover:-translate-x-1" />
                 Back to Services
               </Link>
             </Button>
           </div>
-          
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <Badge className="bg-white/20 text-white mb-4 text-sm px-3 py-1">
-                {category.title}
-              </Badge>
-              <h1 className="text-5xl lg:text-6xl font-bold font-poppins mb-6 animate-fade-in">
-                {service.title}
-              </h1>
-              <p className="text-xl text-primary-foreground/90 mb-8 animate-fade-in">
-                {service.shortDescription}
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="bg-white text-primary hover:bg-white/90 px-8">
-                  <Phone className="h-5 w-5 mr-2" />
-                  Request Quote
-                </Button>
-                <Button variant="outline" size="lg" className="border-white/30 text-white hover:bg-white/20">
-                  <Mail className="h-5 w-5 mr-2" />
-                  Get More Info
-                </Button>
-              </div>
-            </div>
-            
-            <div className="relative">
-              <Card className="bg-white/10 backdrop-blur-sm border-white/20 text-white">
-                <CardContent className="p-8">
-                  <div className="flex items-center justify-center h-48 bg-white/10 rounded-lg mb-6">
-                    <Star className="h-24 w-24 text-white/70" />
-                  </div>
-                  <h3 className="text-xl font-bold mb-2">Professional Service</h3>
-                  <p className="text-white/80">
-                    Expert installation, configuration, and ongoing support for your {service.title.toLowerCase()} solution.
-                  </p>
-                </CardContent>
-              </Card>
+
+          <div className="max-w-2xl">
+            <Badge className="bg-white/20 text-white mb-6 hover:bg-white/30">
+              {category.title}
+            </Badge>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+              {service.title}
+            </h1>
+            <p className="text-lg md:text-xl text-white/90 mb-8 leading-relaxed">
+              {service.shortDescription}
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Button size="lg" className="bg-white text-primary hover:bg-white/90 px-8">
+                <Phone className="h-5 w-5 mr-2" />
+                Request Quote
+              </Button>
+              <Button variant="outline" size="lg" className="border-white text-black hover:bg-white/10 px-8">
+                <Mail className="h-5 w-5 mr-2" />
+                Get More Info
+              </Button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Service Overview */}
+      {/* Service Overview with Premium Card */}
       <section className="py-20 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-3 gap-12">
-            <div className="lg:col-span-2">
-              <h2 className="text-3xl font-bold text-foreground mb-6 font-poppins">
-                Service Overview
-              </h2>
-              <div className="prose prose-lg max-w-none text-muted-foreground space-y-6">
-                <p>
-                  Our {service.title.toLowerCase()} solution is designed to meet the demanding requirements 
-                  of modern businesses. We combine cutting-edge technology with expert implementation 
-                  to deliver a system that not only meets your current needs but scales with your future growth.
-                </p>
-                <p>
-                  With years of experience in the ICT industry, OPPA Services brings unmatched expertise 
-                  to every installation. Our certified technicians ensure seamless integration with your 
-                  existing infrastructure while minimizing disruption to your operations.
-                </p>
-                <p>
-                  Every solution comes with comprehensive training for your team, detailed documentation, 
-                  and ongoing support to ensure you get the maximum value from your investment. We're 
-                  not just installers – we're your technology partners.
-                </p>
-              </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-3 gap-12">
+          <div className="lg:col-span-2">
+            <h2 className="text-3xl font-bold mb-8">Optimized {service.title} Solutions</h2>
+            <div className="space-y-6 text-muted-foreground">
+              <p>
+                Our {service.title.toLowerCase()} services are engineered to deliver peak performance and reliability. 
+                We implement industry-best practices tailored to your specific operational requirements.
+              </p>
+              <p>
+                From initial consultation through deployment and beyond, we ensure seamless integration 
+                with your existing infrastructure while maintaining strict security protocols.
+              </p>
+              <p>
+                Our certified professionals provide comprehensive training and documentation, 
+                empowering your team to leverage the full potential of your new system.
+              </p>
             </div>
+          </div>
 
-            <div>
-              <Card className="sticky top-8 border-0 shadow-elite bg-gradient-card">
-                <CardHeader>
-                  <CardTitle className="flex items-center space-x-2">
-                    <Star className="h-5 w-5 text-primary" />
-                    <span>Quick Facts</span>
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Category:</span>
-                    <span className="font-medium text-foreground">{category.title}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Installation:</span>
-                    <span className="font-medium text-foreground">Professional</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Support:</span>
-                    <span className="font-medium text-foreground">24/7 Available</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Warranty:</span>
-                    <span className="font-medium text-foreground">Extended Options</span>
-                  </div>
-                  <div className="pt-4 border-t border-border">
-                    <Button className="w-full bg-gradient-corporate hover:shadow-glow">
-                      Get Free Consultation
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
+          {/* Premium Service Card */}
+          <div className="relative">
+            <Card className="relative overflow-hidden h-full border-0 shadow-xl">
+              <img
+                src={`/service-covers/${service.id}-card.jpg`}
+                alt="Premium Service"
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent"></div>
+              <CardContent className="relative z-10 p-8 flex flex-col h-full justify-end text-white">
+                <CardTitle className="text-2xl font-bold mb-4">Premium Service Package</CardTitle>
+                <ul className="space-y-3 mb-6">
+                  <li className="flex items-start space-x-3">
+                    <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span>Expert installation & configuration</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span>12 months premium support</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span>Priority response times</span>
+                  </li>
+                </ul>
+                <Button className="w-full bg-primary hover:bg-primary/90">
+                  Upgrade Your Package
+                </Button>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
 
       {/* Key Features & Benefits */}
-      <section className="py-20 bg-accent/20">
+      <section className="py-20 bg-accent/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12">
+          <div className="grid lg:grid-cols-2 gap-16">
             <div>
-              <h2 className="text-3xl font-bold text-foreground mb-8 font-poppins">
-                Key Features
-              </h2>
-              <div className="space-y-4">
+              <h2 className="text-3xl font-bold mb-8">Key Features</h2>
+              <div className="space-y-6">
                 {keyFeatures.map((feature, index) => (
-                  <div key={index} className="flex items-start space-x-3">
-                    <CheckCircle className="h-6 w-6 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-muted-foreground">{feature}</span>
+                  <div key={index} className="flex items-start space-x-4 group">
+                    <div className="flex-shrink-0 p-2 bg-primary/10 rounded-full group-hover:bg-primary/20 transition-colors">
+                      <CheckCircle className="h-5 w-5 text-primary" />
+                    </div>
+                    <span className="text-muted-foreground group-hover:text-foreground transition-colors">
+                      {feature}
+                    </span>
                   </div>
                 ))}
               </div>
             </div>
 
             <div>
-              <h2 className="text-3xl font-bold text-foreground mb-8 font-poppins">
-                Benefits
-              </h2>
-              <div className="space-y-4">
+              <h2 className="text-3xl font-bold mb-8">Business Benefits</h2>
+              <div className="space-y-6">
                 {benefits.map((benefit, index) => (
-                  <div key={index} className="flex items-start space-x-3">
-                    <CheckCircle className="h-6 w-6 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-muted-foreground">{benefit}</span>
+                  <div key={index} className="flex items-start space-x-4 group">
+                    <div className="flex-shrink-0 p-2 bg-primary/10 rounded-full group-hover:bg-primary/20 transition-colors">
+                      <CheckCircle className="h-5 w-5 text-primary" />
+                    </div>
+                    <span className="text-muted-foreground group-hover:text-foreground transition-colors">
+                      {benefit}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -222,62 +194,133 @@ const ServiceDetail = () => {
         </div>
       </section>
 
-      {/* Related Services */}
-      {relatedServices.length > 0 && (
-        <section className="py-20 bg-background">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-foreground mb-8 font-poppins">
-              Related Services
-            </h2>
-            <div className="grid md:grid-cols-3 gap-8">
-              {relatedServices.map((relatedService) => (
-                <Card key={relatedService.id} className="border-0 shadow-card hover:shadow-hover transition-all duration-300 hover:scale-105 bg-gradient-card group">
-                  <CardContent className="p-6">
-                    <Star className="h-12 w-12 text-primary mb-4" />
-                    <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
-                      {relatedService.title}
-                    </h3>
-                    <p className="text-muted-foreground text-sm mb-4">
-                      {relatedService.shortDescription}
-                    </p>
-                    <Button variant="outline" size="sm" asChild className="w-full group-hover:bg-accent transition-colors">
-                      <Link to={`/services/${relatedService.id}`}>
-                        View Details
-                        <ArrowRight className="h-4 w-4 ml-2" />
-                      </Link>
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))}
+      {/* Enhanced Related Services */}
+{relatedServices.length > 0 && (
+  <section className="py-20 bg-background">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="text-center mb-16">
+<h2 className="text-3xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#0a0f2c] via-[#1e2b56] to-[#3c5a92]">
+          Complementary Solutions
+        </h2>
+        <p className="text-muted-foreground max-w-2xl mx-auto">
+          Enhance your setup with these perfectly paired services
+        </p>
+      </div>
+      
+      <div className="grid md:grid-cols-3 gap-8">
+        {relatedServices.map((relatedService) => (
+          <Card
+            key={relatedService.id}
+            className="group relative overflow-hidden rounded-xl border border-border/20 hover:border-primary/30 transition-all duration-300 h-full hover:shadow-lg"
+          >
+            {/* Background Image with Gradient Overlay */}
+            <div className="absolute inset-0 overflow-hidden">
+              <img
+                src={`/service-covers/${relatedService.id}-card.jpg`}
+                alt={relatedService.title}
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
             </div>
-          </div>
-        </section>
-      )}
+            
+            {/* Content */}
+            <CardContent className="relative z-10 p-6 flex flex-col h-full justify-between">
+              <div>
+                <Badge className="mb-3 bg-primary/10 text-primary hover:bg-primary/20">
+                  {serviceCategories.find(c => c.id === relatedService.categoryId)?.title}
+                </Badge>
+                <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-primary transition-colors">
+                  {relatedService.title}
+                </h3>
+                <p className="text-sm text-white/80 mb-6">
+                  {relatedService.shortDescription}
+                </p>
+              </div>
+              
+              <Button 
+                variant="outline" 
+                size="sm" 
+                className="w-full border-white/30 text-black hover:bg-white/10 hover:border-primary/50 transition-all"
+              >
+                <span className="flex items-center">
+                  Explore Service
+                  <ArrowRight className="h-4 w-4 ml-2 transition-transform group-hover:translate-x-1" />
+                </span>
+              </Button>
+            </CardContent>
+            
+            {/* Hover Effect */}
+            <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          </Card>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
 
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-hero text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold mb-6 font-poppins">
-            Ready to Get Started?
-          </h2>
-          <p className="text-xl text-primary-foreground/90 mb-8">
-            Let our experts design the perfect {service.title.toLowerCase()} solution for your business. 
-            Contact us today for a free consultation and quote.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-white text-primary hover:bg-white/90 px-8">
-              <Phone className="h-5 w-5 mr-2" />
-              Call +254 705 576 746
-            </Button>
-            <Button variant="outline" size="lg" className="border-white/30 text-white hover:bg-white/20 px-8" asChild>
-              <Link to="/contact">
-                <Mail className="h-5 w-5 mr-2" />
-                Send Message
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </section>
+      {/* Premium Final CTA */}
+<section className="relative py-28 overflow-hidden bg-gradient-to-br from-primary/90 to-primary-dark/90">
+  {/* Floating background elements */}
+  <div className="absolute inset-0 overflow-hidden">
+    <div className="absolute -top-20 -left-20 w-64 h-64 rounded-full bg-white/5 blur-3xl animate-float"></div>
+    <div className="absolute -bottom-20 -right-20 w-72 h-72 rounded-full bg-accent/5 blur-3xl animate-float animation-delay-2000"></div>
+    <div className="absolute inset-0 bg-[url('/noise.png')] opacity-10 mix-blend-overlay"></div>
+  </div>
+
+  <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    {/* Animated badge */}
+    <div className="inline-flex items-center justify-center px-6 py-2 mb-6 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 animate-pulse-slow">
+      <span className="text-sm font-medium text-white">Limited Availability</span>
+    </div>
+    
+    <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-white/80">
+      Ready to Transform <br className="hidden md:block" /> Your Business?
+    </h2>
+    
+    <p className="text-xl text-white/90 mb-10 max-w-2xl mx-auto leading-relaxed">
+      Our {service.title.toLowerCase()} solutions deliver <span className="font-semibold">measurable results</span> - 
+      let's discuss how we can optimize your operations.
+    </p>
+    
+    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+      <Button 
+        size="lg" 
+        className="relative overflow-hidden bg-white text-primary hover:bg-white/90 px-10 group"
+      >
+        <span className="relative z-10 flex items-center">
+          <Phone className="h-5 w-5 mr-2" />
+          Call +254 705 576 746
+        </span>
+        <span className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></span>
+      </Button>
+      
+      <Button 
+        variant="outline" 
+        size="lg" 
+        className="relative overflow-hidden border-2 border-white/30 text-black hover:border-white/50 hover:bg-white/10 px-10 group"
+      >
+        <span className="relative z-10 flex items-center">
+          <Mail className="h-5 w-5 mr-2" />
+          Get Custom Proposal
+        </span>
+        <span className="absolute inset-0 bg-gradient-to-r from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></span>
+      </Button>
+    </div>
+    
+    {/* Trust indicators */}
+    <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4 text-sm text-white/80">
+      <div className="flex items-center">
+        <CheckCircle className="h-4 w-4 mr-2 text-white" />
+        <span>24/7 Support Available</span>
+      </div>
+      <div className="hidden sm:block h-4 w-px bg-white/30"></div>
+      <div className="flex items-center">
+        <CheckCircle className="h-4 w-4 mr-2 text-white" />
+        <span>Free Initial Consultation</span>
+      </div>
+    </div>
+  </div>
+</section>
 
       <Footer />
     </div>

@@ -1,114 +1,160 @@
-import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { MessageCircle, X, Phone, Mail, ArrowRight } from 'lucide-react';
-import oppaMascot from '@/assets/oppa-mascot.png';
+import React, { useRef, useEffect, useState } from 'react';
+import { useMascotFloat, useHoverAnimation } from '../hooks/useAnimations';
 
-const TechMascot = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isVisible, setIsVisible] = useState(true);
+interface TechMascotProps {
+  className?: string;
+  size?: 'sm' | 'md' | 'lg' | 'xl';
+  interactive?: boolean;
+  floatingAnimation?: boolean;
+  glowEffect?: boolean;
+  speechBubble?: string;
+  onClick?: () => void;
+}
 
-  if (!isVisible) return null;
+const TechMascot: React.FC<TechMascotProps> = ({
+  className = '',
+  size = 'md',
+  interactive = true,
+  floatingAnimation = true,
+  glowEffect = false,
+  speechBubble,
+  onClick
+}) => {
+  const mascotRef = useRef<HTMLDivElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
+  const [showSpeech, setShowSpeech] = useState(false);
+
+  const sizeClasses = {
+    sm: 'w-16 h-16',
+    md: 'w-24 h-24',
+    lg: 'w-32 h-32',
+    xl: 'w-48 h-48',
+  };
+
+  // Floating animation
+  useEffect(() => {
+    if (floatingAnimation && mascotRef.current) {
+      mascotRef.current.classList.add('animate-[float_3s_ease-in-out_infinite]');
+    }
+  }, [floatingAnimation]);
+
+  // Hover interaction
+  useHoverAnimation(
+    mascotRef,
+    () => {
+      setIsHovered(true);
+      mascotRef.current?.classList.add(
+        'scale-110',
+        'rotate-2',
+        'transition-transform',
+        'duration-300',
+        'ease-[back.out]'
+      );
+    },
+    () => {
+      setIsHovered(false);
+      mascotRef.current?.classList.remove('scale-110', 'rotate-2');
+    }
+  );
+
+  // Delayed speech bubble
+  useEffect(() => {
+    if (speechBubble && isHovered) {
+      const timer = setTimeout(() => setShowSpeech(true), 400);
+      return () => clearTimeout(timer);
+    } else {
+      setShowSpeech(false);
+    }
+  }, [speechBubble, isHovered]);
+
+  const handleClick = () => {
+    if (onClick) onClick();
+
+    mascotRef.current?.classList.add('scale-95', 'transition-transform', 'duration-100');
+    setTimeout(() => mascotRef.current?.classList.remove('scale-95'), 100);
+  };
 
   return (
-    <>
-      {/* Mascot Button */}
-      <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end space-y-4">
-        {/* Chat Bubble */}
-        {isOpen && (
-          <Card className="w-80 border-0 shadow-elite bg-card/95 backdrop-blur-sm animate-scale-in">
-            <CardContent className="p-6">
-              <div className="flex items-start justify-between mb-4">
-                <div className="flex items-center space-x-3">
-                  <img 
-                    src={oppaMascot} 
-                    alt="OPPA Assistant" 
-                    className="w-10 h-10 rounded-full object-cover"
-                  />
-                  <div>
-                    <h3 className="font-semibold text-foreground font-display">OPPA Assistant</h3>
-                    <p className="text-xs text-muted-foreground">How can I help you today?</p>
-                  </div>
-                </div>
-                <Button 
-                  variant="ghost" 
-                  size="sm"
-                  onClick={() => setIsOpen(false)}
-                  className="text-muted-foreground hover:text-foreground"
-                >
-                  <X className="h-4 w-4" />
-                </Button>
-              </div>
-
-              <div className="space-y-3">
-                <p className="text-sm text-muted-foreground leading-relaxed font-body">
-                  👋 Hi there! I'm here to help you with OPPA's ICT solutions. 
-                  What are you looking for today?
-                </p>
-                
-                <div className="space-y-2">
-                  <Button 
-                    variant="outline" 
-                    size="sm" 
-                    className="w-full justify-start text-left h-auto p-3 hover:bg-primary hover:text-white transition-all duration-300"
-                    onClick={() => window.location.href = '/services'}
-                  >
-                    <ArrowRight className="h-4 w-4 mr-2 flex-shrink-0" />
-                    <span className="font-body">Browse Our 24+ ICT Services</span>
-                  </Button>
-                  
-                  <Button 
-                    variant="outline" 
-                    size="sm" 
-                    className="w-full justify-start text-left h-auto p-3 hover:bg-primary hover:text-white transition-all duration-300"
-                    onClick={() => window.location.href = '/contact'}
-                  >
-                    <MessageCircle className="h-4 w-4 mr-2 flex-shrink-0" />
-                    <span className="font-body">Get Free Consultation</span>
-                  </Button>
-                  
-                  <Button 
-                    variant="outline" 
-                    size="sm" 
-                    className="w-full justify-start text-left h-auto p-3 hover:bg-primary hover:text-white transition-all duration-300"
-                    onClick={() => window.open('tel:+254705576746')}
-                  >
-                    <Phone className="h-4 w-4 mr-2 flex-shrink-0" />
-                    <span className="font-body">Call +254 705 576 746</span>
-                  </Button>
-                </div>
-
-                <div className="text-xs text-muted-foreground text-center pt-2 border-t border-border">
-                  <p className="font-body">Need immediate help? We're here 24/7!</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        )}
-
-        {/* Mascot Avatar Button */}
-        <div className="relative">
-          <Button
-            onClick={() => setIsOpen(!isOpen)}
-            className="w-16 h-16 rounded-full bg-gradient-corporate hover:shadow-glow transition-all duration-300 hover:scale-110 p-0 overflow-hidden"
-          >
-            <img 
-              src={oppaMascot} 
-              alt="OPPA Tech Assistant" 
-              className="w-full h-full object-cover rounded-full"
-            />
-          </Button>
-          
-          {/* Pulse Animation */}
-          <div className="absolute inset-0 rounded-full bg-primary/20 animate-ping"></div>
-          
-          {/* Notification Badge */}
-          <div className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center">
-            <span className="text-white text-xs font-bold">1</span>
+    <div className={`fixed bottom-8 right-8 z-50 ${className}`}>
+      {/* Speech Bubble */}
+      {speechBubble && showSpeech && (
+        <div className="absolute -top-20 left-1/2 transform -translate-x-1/2 z-10 animate-[fade-in_0.3s_ease-out]">
+          <div className="bg-white text-gray-800 text-sm font-medium rounded-lg px-4 py-2 shadow-lg border border-gray-200 relative whitespace-nowrap">
+            {speechBubble}
+            <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-white" />
           </div>
         </div>
+      )}
+
+      {/* Mascot Avatar */}
+      <div
+        ref={mascotRef}
+        className={`relative ${sizeClasses[size]} ${interactive ? 'cursor-pointer' : ''} ${
+          glowEffect ? 'filter drop-shadow-lg' : ''
+        } transition-all duration-300 ease-[back.out]`}
+        onClick={handleClick}
+        role="button"
+        tabIndex={interactive ? 0 : -1}
+        aria-label="Chatbot assistant"
+        onKeyDown={(e) => e.key === 'Enter' && handleClick()}
+      >
+        {/* Glow */}
+        {glowEffect && (
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 rounded-full blur-md opacity-30 animate-pulse" />
+        )}
+
+        {/* Mascot Image */}
+        <div className="relative z-10 w-full h-full">
+          <img
+            src="/assets/oppa-mascot.png"
+            alt="OPPA Tech Mascot"
+            className="w-full h-full object-contain"
+            style={{ filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.1))' }}
+          />
+        </div>
+
+        {/* Decorative Particles + Rings */}
+        {interactive && (
+          <>
+            <div className="absolute inset-0 pointer-events-none">
+              {[...Array(3)].map((_, i) => (
+                <div
+                  key={i}
+                  className="absolute w-2 h-2 bg-blue-400 rounded-full opacity-0 animate-ping"
+                  style={{
+                    left: `${20 + i * 30}%`,
+                    top: `${10 + i * 20}%`,
+                    animationDelay: `${i * 0.5}s`,
+                    animationDuration: '2s',
+                  }}
+                />
+              ))}
+            </div>
+            <div className="absolute inset-0 pointer-events-none">
+              <div className="absolute inset-0 border-2 border-blue-400 rounded-full opacity-30 animate-pulse" />
+              <div
+                className="absolute inset-2 border border-purple-400 rounded-full opacity-20 animate-pulse"
+                style={{ animationDelay: '0.5s' }}
+              />
+            </div>
+          </>
+        )}
+
+        {/* Tooltip */}
+        {isHovered && interactive && (
+          <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 animate-[fade-in_0.3s_ease-out]">
+            <div className="bg-blue-500 text-white text-xs px-2 py-1 rounded-full shadow-sm">
+              Click me!
+            </div>
+          </div>
+        )}
       </div>
-    </>
+
+      {/* Online Indicator */}
+      <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white shadow-sm">
+        <div className="w-full h-full bg-green-400 rounded-full animate-pulse" />
+      </div>
+    </div>
   );
 };
 

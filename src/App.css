@@ -1,42 +1,41 @@
+/* Add this to your existing CSS file */
+
+/* Smooth scrolling for better user experience */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Disable smooth scrolling for programmatic scrolls */
+.scroll-instant {
+  scroll-behavior: auto !important;
+}
+
+/* Ensure scroll restoration works properly */
+body {
+  scroll-padding-top: 0; /* Adjust based on your nav height */
+}
+
+/* Optional: Add a fade-in animation for page transitions */
+.page-transition {
+  animation: fade-in-up 0.3s ease-out;
+}
+
+/* If you want to disable smooth scrolling for programmatic scrolls */
+.scroll-instant {
+  scroll-behavior: auto;
+}
+
+/* Remove the problematic #root styles that might interfere with routing */
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+  /* Remove or comment out these styles: */
+  /* max-width: 1280px; */
+  /* margin: 0 auto; */
+  /* padding: 2rem; */
+  /* text-align: center; */
+  
+  /* Replace with: */
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }

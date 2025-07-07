@@ -3,8 +3,21 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { ArrowRight, ExternalLink, Home, ChevronRight } from 'lucide-react';
-import Navigation from '@/components/Navigation';
+import { 
+  ArrowRight, 
+  ExternalLink, 
+  Home, 
+  ChevronRight,
+  Server,
+  Shield,
+  Mic,
+  Cpu,
+  Users,
+  Code,
+  Check,
+  Phone,
+  Clock
+} from 'lucide-react';import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { serviceCategories, services, getServicesByCategory } from '@/config/services';
 import servicesNetworkImage from '@/assets/services-network.jpg';
@@ -28,12 +41,22 @@ const Services = () => {
     return imageMap[categoryId] || servicesNetworkImage;
   };
 
+  // Icon mapping for categories
+  const categoryIcons = {
+    infrastructure: <Server className="w-5 h-5" />,
+    audiovisual: <Mic className="w-5 h-5" />,
+    security: <Shield className="w-5 h-5" />,
+    automation: <Cpu className="w-5 h-5" />,
+    people: <Users className="w-5 h-5" />,
+    software: <Code className="w-5 h-5" />
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
       
-      {/* Breadcrumb Navigation */}
-      <section className="bg-accent/20 py-4 border-b border-border">
+      {/* Breadcrumb Navigation - Enhanced */}
+      <section className="bg-accent/10 py-4 border-b border-border/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <nav className="flex items-center space-x-2 text-sm">
             <Link to="/" className="flex items-center text-muted-foreground hover:text-primary transition-colors">
@@ -46,7 +69,7 @@ const Services = () => {
         </div>
       </section>
       
-      {/* Hero Section */}
+      {/* Hero Section - Kept exactly as requested */}
       <section className="relative bg-gradient-hero text-white py-16 lg:py-24 overflow-hidden">
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
@@ -66,22 +89,21 @@ const Services = () => {
         </div>
       </section>
 
-      {/* Services by Category */}
-      <section className="py-16 lg:py-24">
+      {/* Enhanced Services by Category */}
+      <section className="py-16 lg:py-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Tabs value={activeCategory} onValueChange={setActiveCategory} className="w-full">
-            {/* Category Tabs */}
+            {/* Enhanced Category Tabs */}
             <div className="mb-12">
-              <TabsList className="grid w-full grid-cols-2 md:grid-cols-3 lg:grid-cols-6 h-auto p-1">
+              <TabsList className="grid w-full grid-cols-2 md:grid-cols-3 lg:grid-cols-6 h-auto gap-2 bg-background">
                 {serviceCategories.map((category) => (
                   <TabsTrigger 
                     key={category.id} 
                     value={category.id}
-                    className="flex flex-col items-center p-4 text-center data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+                    className="flex flex-col items-center p-4 text-center rounded-lg border border-border/20 hover:border-primary/30 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:border-primary/50 transition-all duration-200"
                   >
-                    <div className="w-8 h-8 mb-2">
-                      {/* Icon placeholder */}
-                      <div className="w-full h-full bg-current opacity-30 rounded"></div>
+                    <div className="w-8 h-8 mb-2 flex items-center justify-center">
+                      {categoryIcons[category.id] || <Server className="w-5 h-5" />}
                     </div>
                     <span className="text-xs font-medium">{category.title}</span>
                   </TabsTrigger>
@@ -102,69 +124,79 @@ const Services = () => {
                   </p>
                 </div>
 
-                {/* Services Grid */}
+                {/* Enhanced Services Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {getServicesByCategory(category.id).map((service, index) => (
+                  {getServicesByCategory(category.id).map((service) => (
                     <Card 
                       key={service.id} 
-                      className="group hover:shadow-hover transition-all duration-300 animate-scale-in border-2 hover:border-primary/20"
-                      style={{animationDelay: `${index * 100}ms`}}
+                      className="group hover:shadow-lg transition-all duration-300 border-2 border-border/20 hover:border-primary/30 bg-gradient-to-b from-card to-card/50 overflow-hidden"
                     >
-                      <CardContent className="p-0">
+                      <CardContent className="p-0 h-full flex flex-col">
                         {/* Service Image */}
-                        <div className="relative overflow-hidden rounded-t-lg">
+                        <div className="relative h-48 overflow-hidden">
                           <img 
                             src={getServiceImage(category.id)}
                             alt={service.title}
-                            className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                           />
-                          <div className="absolute inset-0 bg-gradient-to-t from-corporate-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <div className="absolute bottom-4 left-4 right-4">
-                              <Link
-                                to={`/services/${service.id}`}
-                                className="inline-flex items-center text-white text-sm font-medium hover:text-primary-glow transition-colors"
-                              >
-                                View Details <ExternalLink className="ml-1 h-4 w-4" />
-                              </Link>
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* Service Content */}
-                        <div className="p-6 space-y-4">
-                          <div>
-                            <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
-                              {service.title}
-                            </h3>
-                            <p className="text-muted-foreground text-sm leading-relaxed">
-                              {service.shortDescription}
-                            </p>
-                          </div>
-
-                          {/* Features Preview */}
-                          <div className="space-y-2">
-                            <h4 className="text-sm font-medium text-foreground">Key Features:</h4>
-                            <ul className="text-sm text-muted-foreground space-y-1">
-                              {service.features.slice(0, 3).map((feature, idx) => (
-                                <li key={idx} className="flex items-center space-x-2">
-                                  <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
-                                  <span>{feature}</span>
-                                </li>
-                              ))}
-                              {service.features.length > 3 && (
-                                <li className="text-primary text-xs">+{service.features.length - 3} more features</li>
-                              )}
-                            </ul>
-                          </div>
-
-                          <div className="pt-4 border-t border-border">
-                            <Button asChild variant="corporate" className="w-full transition-all duration-300">
+                          <div className="absolute inset-0 bg-gradient-to-t from-corporate-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                            <Button 
+                              variant="outline" 
+                              size="sm" 
+                              className="border-white/30 text-black hover:bg-white/20 hover:text-white ml-auto"
+                              asChild
+                            >
                               <Link to={`/services/${service.id}`}>
-                                Learn More <ArrowRight className="ml-2 h-4 w-4" />
+                                View Details <ExternalLink className="ml-2 h-4 w-4" />
                               </Link>
                             </Button>
                           </div>
                         </div>
+
+                        {/* Service Content */}
+<div className="p-6 flex-1 flex flex-col">
+  <div className="flex-1 space-y-4">
+    <h3 className="text-xl font-semibold group-hover:text-primary transition-colors duration-300">
+      {service.title}
+    </h3>
+    <p className="text-muted-foreground text-sm leading-relaxed">
+      {service.shortDescription}
+    </p>
+    
+    {/* Features Preview */}
+    <div className="pt-4 mt-4 border-t border-border/20">
+      <h4 className="text-sm font-medium text-foreground mb-3 flex items-center">
+        <span className="w-2 h-2 bg-primary rounded-full mr-2"></span>
+        Key Features
+      </h4>
+      <ul className="space-y-2 text-sm">
+        {service.features.slice(0, 3).map((feature, idx) => (
+          <li key={idx} className="flex items-start">
+            <Check className="h-4 w-4 text-emerald-500 mt-0.5 mr-2 flex-shrink-0 transform transition-transform group-hover:scale-110" />
+            <span className="transition-all group-hover:translate-x-1">{feature}</span>
+          </li>
+        ))}
+        {service.features.length > 3 && (
+          <li className="text-primary text-xs font-medium flex items-center">
+            <span className="w-1 h-1 bg-primary rounded-full mr-1.5"></span>
+            +{service.features.length - 3} more features
+          </li>
+        )}
+      </ul>
+    </div>
+  </div>
+
+  <div className="pt-4 mt-4 border-t border-border/20">
+    <Button 
+      asChild 
+      className="bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-primary hover:shadow-md transition-all group"
+    >
+      <Link to={`/services/${service.id}`}>
+        Learn More <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/button:translate-x-1" />
+      </Link>
+    </Button>
+  </div>
+</div>
                       </CardContent>
                     </Card>
                   ))}
@@ -175,9 +207,13 @@ const Services = () => {
                   <p className="text-muted-foreground mb-4">
                     Need a custom solution in {category.title.toLowerCase()}?
                   </p>
-                  <Button asChild variant="corporate" size="lg">
+                  <Button 
+                    asChild 
+                    size="lg"
+                    className="bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-primary hover:shadow-md transition-all group"
+                  >
                     <Link to="/contact">
-                      Get Custom Quote <ArrowRight className="ml-2 h-5 w-5" />
+                      Get Custom Quote <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                     </Link>
                   </Button>
                 </div>
@@ -187,29 +223,55 @@ const Services = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16 lg:py-24 bg-accent">
-        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold font-poppins mb-4">
-            Can't Find What You're Looking For?
-          </h2>
-          <p className="text-lg text-muted-foreground mb-8">
-            We offer custom ICT solutions tailored to your specific business needs. 
-            Let's discuss how we can help transform your operations.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild variant="corporate" size="lg">
-              <Link to="/contact">
-                Request Custom Solution <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
-            <Button asChild variant="outline" size="lg" className="hover:bg-primary hover:text-primary-foreground">
-              <a href="tel:+254705576746">Call Us Directly</a>
-            </Button>
-          </div>
-        </div>
-      </section>
+      {/* Elegant CTA Section */}
+<section className="relative py-16 lg:py-24 bg-gradient-to-br from-accent/5 to-accent/10">
+  <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+    <div className="mb-2">
+      <span className="inline-block px-4 py-1.5 text-sm font-medium rounded-full bg-primary/10 text-primary">
+        Custom Solutions
+      </span>
+    </div>
+    
+    <h2 className="text-3xl md:text-4xl font-bold font-display mb-6 text-balance">
+      Need Something <span className="text-primary">Tailored</span> for Your Business?
+    </h2>
+    
+    <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
+      Our team specializes in building custom ICT solutions that fit your exact requirements.
+      Let's discuss how we can solve your unique challenges.
+    </p>
+    
+    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+      <Button 
+        asChild 
+        size="lg"
+        className="bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-primary hover:shadow-md transition-all group"
+      >
+        <Link to="/contact" className="font-medium">
+          Request Consultation
+          <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+        </Link>
+      </Button>
+      
+      <Button 
+        asChild 
+        variant="outline" 
+        size="lg" 
+        className="border-border hover:bg-accent/50 hover:border-primary/30 transition-colors group"
+      >
+        <a href="tel:+254705576746" className="flex items-center justify-center">
+          <Phone className="mr-2 h-4 w-4 group-hover:animate-pulse" />
+          +254 705 576 746
+        </a>
+      </Button>
+    </div>
+    
+    <div className="mt-8 text-sm text-muted-foreground/80 flex items-center justify-center gap-1.5">
+      <Clock className="h-4 w-4" />
+      <span>Available 24/7 for urgent inquiries</span>
+    </div>
+  </div>
+</section>
 
       <Footer />
     </div>
@@ -217,3 +279,4 @@ const Services = () => {
 };
 
 export default Services;
+// Note: Ensure to import the necessary assets and components at the top of this file.

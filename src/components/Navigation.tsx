@@ -1,180 +1,286 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Menu, X, Phone, Mail, MapPin } from 'lucide-react';
+import { Menu, X, Phone, Mail, MapPin, ChevronDown, Award, Shield } from 'lucide-react';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState(null);
   const location = useLocation();
 
   const navLinks = [
     { href: '/', label: 'Home' },
-    { href: '/services', label: 'Services' },
+    { 
+      href: '/services', 
+      label: 'Services',
+      submenu: [
+        { href: '/services/ict-integration', label: 'ICT Integration' },
+        { href: '/services/cloud-solutions', label: 'Cloud Solutions' },
+        { href: '/services/cybersecurity', label: 'Cybersecurity' },
+        { href: '/services/support', label: 'IT Support' }
+      ]
+    },
     { href: '/news', label: 'News & Events' },
     { href: '/about', label: 'About Us' },
     { href: '/contact', label: 'Contact' },
     { href: '/client-portal', label: 'Client Portal' },
   ];
 
-  const isActive = (path: string) => location.pathname === path;
+  const isActive = (path) => location.pathname === path;
+
+  // Handle scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Close mobile menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (isOpen && !event.target.closest('.mobile-menu')) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isOpen]);
 
   return (
     <>
-      {/* Top Contact Bar */}
-      <div className="bg-gradient-elite text-white py-2 hidden lg:block">
+      {/* Enhanced Top Contact Bar */}
+      <div className={`bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900 text-white py-3 hidden lg:block transition-all duration-500 ${isScrolled ? 'py-2 opacity-90' : 'opacity-100'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center text-sm">
-            <div className="flex items-center space-x-6">
-              <a href="tel:+254705576746" className="flex items-center space-x-2 hover:text-primary-foreground/80 transition-colors">
-                <Phone className="h-4 w-4" />
-                <span>+254 705 576 746</span>
+            <div className="flex items-center space-x-8">
+              <a href="tel:+254705576746" className="flex items-center space-x-2 hover:text-blue-200 transition-all duration-300 hover:scale-105 group">
+                <div className="p-1 rounded-full bg-blue-600 group-hover:bg-blue-500 transition-colors duration-300">
+                  <Phone className="h-3 w-3" />
+                </div>
+                <span className="font-medium">+254 705 576 746</span>
               </a>
-              <a href="mailto:info@oppaservices.com" className="flex items-center space-x-2 hover:text-primary-foreground/80 transition-colors">
-                <Mail className="h-4 w-4" />
-                <span>info@oppaservices.com</span>
+              <a href="mailto:info@oppaservices.com" className="flex items-center space-x-2 hover:text-blue-200 transition-all duration-300 hover:scale-105 group">
+                <div className="p-1 rounded-full bg-blue-600 group-hover:bg-blue-500 transition-colors duration-300">
+                  <Mail className="h-3 w-3" />
+                </div>
+                <span className="font-medium">info@oppaservices.com</span>
               </a>
-              <div className="flex items-center space-x-2 text-primary-foreground/80">
+              <div className="flex items-center space-x-2 text-blue-200">
                 <MapPin className="h-4 w-4" />
                 <span>Elysee Plaza, Kilimani Road, Nairobi</span>
               </div>
             </div>
-            <div className="text-xs text-primary-foreground/80">
-              AGPO Certified: PVT-5JUEKP5J
+            <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-2 text-xs bg-emerald-600/90 hover:bg-emerald-600 px-3 py-1 rounded-full transition-colors duration-300">
+                <Award className="h-3 w-3" />
+                <span>AGPO Certified: PVT-5JUEKP5J</span>
+              </div>
+              <div className="flex items-center space-x-2 text-xs bg-blue-600/90 hover:bg-blue-600 px-3 py-1 rounded-full transition-colors duration-300">
+                <Shield className="h-3 w-3" />
+                <span>ISO 27001 Compliant</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      <nav className="bg-card shadow-elite backdrop-blur-lg border-b border-border sticky top-0 z-50">
+      <nav className={`bg-white/95 backdrop-blur-xl border-b border-gray-200/50 sticky top-0 z-50 transition-all duration-500 ${
+        isScrolled ? 'shadow-lg shadow-gray-900/10' : 'shadow-md shadow-gray-900/5'
+      }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20">
-            {/* Logo */}
+          <div className={`flex justify-between items-center transition-all duration-500 ${isScrolled ? 'h-16' : 'h-20'}`}>
+            {/* Enhanced Logo */}
             <Link to="/" className="flex items-center space-x-4 group">
               <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
                 <img 
-                  src="/lovable-uploads/233c08a7-ad64-4f31-bb2f-d741e2584a0f.png" 
+                  src="/logo-oppa-design.png" 
                   alt="OPPA Services Logo" 
-                  className="w-16 h-16 rounded-xl shadow-glow group-hover:shadow-hover transition-all duration-300 group-hover:scale-105"
+                  className={`rounded-xl shadow-lg group-hover:shadow-xl transition-all duration-500 group-hover:scale-105 ${
+                    isScrolled ? 'w-12 h-12' : 'w-16 h-16'
+                  }`}
                 />
-                <div className="absolute -top-1 -right-1 w-4 h-4 bg-accent-blue rounded-full animate-pulse"></div>
+                <div className="absolute -top-1 -right-1 w-3 h-3 bg-emerald-500 rounded-full animate-pulse shadow-md border-2 border-white"></div>
               </div>
               <div className="hidden sm:block">
-                <div className="font-display font-bold text-2xl text-foreground group-hover:text-primary transition-colors">
-                  OPPA <span className="text-primary">Services</span>
+                <div className={`font-bold text-gray-900 group-hover:text-blue-600 transition-all duration-300 ${
+                  isScrolled ? 'text-xl' : 'text-2xl'
+                }`}>
+                  OPPA <span className="text-blue-600">Services</span>
                 </div>
-                <div className="text-sm text-primary font-body font-semibold tracking-wide">
+                {/* <div className="text-sm text-blue-600 font-semibold tracking-wide">
                   ICT Systems Integration
-                </div>
+                </div> */}
               </div>
             </Link>
 
-            {/* Desktop Navigation */}
+            {/* Enhanced Desktop Navigation */}
             <div className="hidden lg:flex items-center space-x-8">
               {navLinks.map((link, index) => (
-                <Link
+                <div 
                   key={link.href}
-                  to={link.href}
-                  className={`relative font-body font-medium text-base transition-all duration-300 group ${
-                    isActive(link.href)
-                      ? 'text-primary'
-                      : 'text-foreground hover:text-primary'
-                  }`}
-                  style={{ animationDelay: `${index * 100}ms` }}
+                  className="relative group"
+                  onMouseEnter={() => setActiveDropdown(link.submenu ? index : null)}
+                  onMouseLeave={() => setActiveDropdown(null)}
                 >
-                  {link.label}
-                  <span className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-corporate transition-all duration-300 ${
+                  <Link
+                    to={link.href}
+                    className={`relative font-medium text-base transition-all duration-300 flex items-center space-x-1 py-2 ${
+                      isActive(link.href)
+                        ? 'text-blue-600'
+                        : 'text-gray-700 hover:text-blue-600'
+                    }`}
+                    style={{ animationDelay: `${index * 100}ms` }}
+                  >
+                    <span>{link.label}</span>
+                    {link.submenu && <ChevronDown className="h-4 w-4 transition-transform duration-300 group-hover:rotate-180" />}
+                  </Link>
+                  
+                  {/* Animated underline */}
+                  <span className={`absolute -bottom-2 left-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-500 ${
                     isActive(link.href) ? 'w-full' : 'w-0 group-hover:w-full'
                   }`}></span>
-                </Link>
+
+                  {/* Enhanced Dropdown menu */}
+                  {link.submenu && activeDropdown === index && (
+                    <div className="absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-xl border border-gray-200/70 py-2 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 origin-top">
+                      {link.submenu.map((item, subIndex) => (
+                        <Link
+                          key={item.href}
+                          to={item.href}
+                          className="block px-4 py-3 text-sm text-gray-700 hover:text-blue-600 hover:bg-blue-50/70 transition-all duration-200 hover:pl-5"
+                          style={{ animationDelay: `${subIndex * 50}ms` }}
+                        >
+                          {item.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
               ))}
               
               <div className="flex items-center space-x-4">
-                <div className="hidden xl:flex items-center space-x-4 text-sm text-muted-foreground">
-                  <a href="tel:+254705576746" className="flex items-center space-x-2 hover:text-primary transition-all duration-300 hover:scale-105">
-                    <div className="p-1 rounded-full bg-accent">
-                      <Phone className="h-3 w-3" />
+                <div className="hidden xl:flex items-center space-x-4 text-sm text-gray-600">
+                  <a href="tel:+254705576746" className="flex items-center space-x-2 hover:text-blue-600 transition-all duration-300 hover:scale-105 group">
+                    <div className="p-1.5 rounded-full bg-blue-100 group-hover:bg-blue-200 transition-colors duration-300">
+                      <Phone className="h-3 w-3 text-blue-600" />
                     </div>
-                      <span className="font-body font-medium">+254 705 576 746</span>
+                    <span className="font-medium">+254 705 576 746</span>
                   </a>
-                  <div className="w-px h-4 bg-border"></div>
-                  <a href="mailto:info@oppaservices.com" className="flex items-center space-x-2 hover:text-primary transition-all duration-300 hover:scale-105">
-                    <div className="p-1 rounded-full bg-accent">
-                      <Mail className="h-3 w-3" />
+                  <div className="w-px h-4 bg-gray-300/70"></div>
+                  <a href="mailto:info@oppaservices.com" className="flex items-center space-x-2 hover:text-blue-600 transition-all duration-300 hover:scale-105 group">
+                    <div className="p-1.5 rounded-full bg-blue-100 group-hover:bg-blue-200 transition-colors duration-300">
+                      <Mail className="h-3 w-3 text-blue-600" />
                     </div>
-                      <span className="font-body font-medium">info@oppaservices.com</span>
+                    <span className="font-medium">info@oppaservices.com</span>
                   </a>
                 </div>
 
-                <Button asChild className="bg-gradient-corporate text-white hover:shadow-glow hover:bg-primary-hover transition-all duration-300 hover:scale-105 font-body font-semibold px-6">
-                  <Link to="/contact">Get Quote</Link>
+                <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 font-semibold px-6 py-2 rounded-lg group">
+                  <Link to="/contact" className="flex items-center space-x-2">
+                    <span>Get Quote</span>
+                    <div className="w-2 h-2 bg-white rounded-full animate-pulse group-hover:animate-none group-hover:bg-blue-200 transition-all"></div>
+                  </Link>
                 </Button>
               </div>
             </div>
 
-            {/* Mobile menu button */}
+            {/* Enhanced Mobile menu button */}
             <div className="lg:hidden">
               <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setIsOpen(!isOpen)}
-                className="relative"
-              >
-                {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-              </Button>
+  variant="ghost"
+  size="sm"
+  onClick={() => setIsOpen(!isOpen)}
+  className="relative p-2 rounded-lg hover:bg-gray-100 transition-all duration-300"
+  aria-expanded={isOpen}
+  aria-controls="mobile-menu"
+  aria-label="Toggle navigation"
+>
+  {isOpen ? (
+    <X className="h-6 w-6 text-blue-600" />
+  ) : (
+    <Menu className="h-6 w-6 text-gray-700" />
+  )}
+</Button>
             </div>
           </div>
 
-          {/* Mobile Navigation */}
-          {isOpen && (
-            <div className="lg:hidden py-6 border-t border-border bg-gradient-glass backdrop-blur-sm">
-              <div className="flex flex-col space-y-4">
+          {/* Enhanced Mobile Navigation */}
+          <div className={`lg:hidden mobile-menu overflow-hidden transition-all duration-500 ease-in-out ${
+            isOpen ? 'max-h-screen py-4' : 'max-h-0 py-0'
+          }`}>
+            <div className="border-t border-gray-200/50 bg-gradient-to-br from-white via-blue-50 to-purple-50 rounded-b-xl shadow-inner">
+              <div className="flex flex-col space-y-2 p-4">
                 {navLinks.map((link, index) => (
-                  <Link
-                    key={link.href}
-                    to={link.href}
-                    className={`font-body font-medium px-4 py-3 rounded-lg transition-all duration-300 mx-4 ${
-                      isActive(link.href)
-                        ? 'bg-gradient-corporate text-white shadow-glow'
-                        : 'text-foreground hover:text-primary hover:bg-accent hover:scale-105'
-                    }`}
-                    onClick={() => setIsOpen(false)}
-                    style={{ animationDelay: `${index * 100}ms` }}
-                  >
-                    {link.label}
-                  </Link>
+                  <div key={link.href} className="group">
+                    <Link
+                      to={link.href}
+                      className={`font-medium px-4 py-3 rounded-lg transition-all duration-300 flex items-center justify-between ${
+                        isActive(link.href)
+                          ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg'
+                          : 'text-gray-700 hover:text-blue-600 hover:bg-white hover:shadow-md'
+                      }`}
+                      onClick={() => setIsOpen(false)}
+                      style={{ animationDelay: `${index * 100}ms` }}
+                    >
+                      <span>{link.label}</span>
+                      {link.submenu && <ChevronDown className={`h-4 w-4 transition-transform duration-300 ${isActive(link.href) ? 'text-white' : 'text-gray-400'}`} />}
+                    </Link>
+                    
+                    {link.submenu && (
+                      <div className="ml-4 mt-2 space-y-1">
+                        {link.submenu.map((item, subIndex) => (
+                          <Link
+                            key={item.href}
+                            to={item.href}
+                            className="block px-4 py-2 text-sm text-gray-600 hover:text-blue-600 hover:bg-white/80 rounded-lg transition-all duration-200 hover:pl-5"
+                            onClick={() => setIsOpen(false)}
+                          >
+                            {item.label}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 ))}
                 
-                <div className="px-4 py-4 border-t border-border mt-4">
+                <div className="px-4 py-4 border-t border-gray-200/50 mt-4 bg-white/80 rounded-lg shadow-sm">
                   <div className="flex flex-col space-y-3 text-sm">
-                    <a href="tel:+254705576746" className="flex items-center space-x-3 hover:text-primary transition-all duration-300 p-2 rounded-lg hover:bg-accent">
-                      <div className="p-2 rounded-full bg-primary text-white">
-                        <Phone className="h-4 w-4" />
+                    <a href="tel:+254705576746" className="flex items-center space-x-3 hover:text-blue-600 transition-all duration-300 p-3 rounded-lg hover:bg-blue-50 group">
+                      <div className="p-2 rounded-full bg-blue-600 group-hover:bg-blue-700 transition-colors duration-300">
+                        <Phone className="h-4 w-4 text-white" />
                       </div>
-                      <span className="font-body font-medium">+254 705 576 746</span>
+                      <span className="font-medium">+254 705 576 746</span>
                     </a>
-                    <a href="mailto:info@oppaservices.com" className="flex items-center space-x-3 hover:text-primary transition-all duration-300 p-2 rounded-lg hover:bg-accent">
-                      <div className="p-2 rounded-full bg-primary text-white">
-                        <Mail className="h-4 w-4" />
+                    <a href="mailto:info@oppaservices.com" className="flex items-center space-x-3 hover:text-blue-600 transition-all duration-300 p-3 rounded-lg hover:bg-blue-50 group">
+                      <div className="p-2 rounded-full bg-blue-600 group-hover:bg-blue-700 transition-colors duration-300">
+                        <Mail className="h-4 w-4 text-white" />
                       </div>
-                      <span className="font-body font-medium">info@oppaservices.com</span>
+                      <span className="font-medium">info@oppaservices.com</span>
                     </a>
-                    <div className="flex items-center space-x-3 text-muted-foreground p-2">
-                      <div className="p-2 rounded-full bg-accent">
+                    <div className="flex items-center space-x-3 text-gray-600 p-3">
+                      <div className="p-2 rounded-full bg-gray-200">
                         <MapPin className="h-4 w-4" />
                       </div>
-                      <span className="font-body font-medium text-xs">Elysee Plaza, Kilimani Road</span>
+                      <span className="font-medium text-xs">Elysee Plaza, Kilimani Road</span>
                     </div>
                   </div>
                 </div>
 
                 <div className="px-4 pt-4">
-                  <Button asChild className="w-full bg-gradient-corporate text-white hover:shadow-glow hover:bg-primary-hover transition-all duration-300 hover:scale-105 font-body font-semibold">
-                    <Link to="/contact" onClick={() => setIsOpen(false)}>Get Quote</Link>
+                  <Button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] font-semibold py-3 rounded-lg">
+                    <Link to="/contact" onClick={() => setIsOpen(false)} className="flex items-center justify-center space-x-2">
+                      <span>Get Quote</span>
+                      <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+                    </Link>
                   </Button>
                 </div>
               </div>
             </div>
-          )}
+          </div>
         </div>
       </nav>
     </>
