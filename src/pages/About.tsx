@@ -206,108 +206,124 @@ const About = () => {
         </div>
       </section>
 
-      {/* Why Choose Us - Mobile Optimized */}
-      <section className="py-16 sm:py-20 md:py-24 bg-gradient-to-b from-accent/5 to-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mb-12 sm:mb-16 md:mb-20"
-          >
-            <Badge variant="outline" className="inline-block mb-3 text-sm font-semibold text-primary bg-primary/10 px-4 py-1 rounded-full text-xs sm:text-sm">
-              Competitive Edge
-            </Badge>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-display mb-4 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-foreground to-primary leading-tight">
-              The <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-display mb-4 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-foreground to-primary">OPPA Advantage</span>
-            </h2>
-            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto px-2">
-              Distinctive qualities that set us apart in the ICT landscape
-            </p>
-          </motion.div>
+     {/* Why Choose Us - With Kenyan Images */}
+<section className="py-16 sm:py-20 md:py-24 bg-gradient-to-b from-accent/5 to-background">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 0.6 }}
+      viewport={{ once: true }}
+      className="text-center mb-12 sm:mb-16 md:mb-20"
+    >
+      <Badge variant="outline" className="inline-block mb-3 text-sm font-semibold text-primary bg-primary/10 px-4 py-1 rounded-full text-xs sm:text-sm">
+        Competitive Edge
+      </Badge>
+      <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-display mb-4 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-foreground to-primary leading-tight">
+        The <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-display mb-4 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-foreground to-primary">OPPA Advantage</span>
+      </h2>
+      <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto px-2">
+        Distinctive qualities that set us apart in the ICT landscape
+      </p>
+    </motion.div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {[
-  {
-    icon: Shield,
-    title: "AGPO Certified",
-    description: "Recognized as a government-compliant service provider, committed to inclusivity and responsible business practices.",
-    color: "text-green-500"
-  },
-  {
-    icon: Globe,
-    title: "Rooted in Africa",
-    description: "We blend global standards with a deep understanding of the East African business and ICT environment.",
-    color: "text-blue-500"
-  },
-  {
-    icon: Users,
-    title: "Skilled & Certified Team",
-    description: "Led by professionals with vendor certifications and a hands-on approach to problem-solving.",
-    color: "text-amber-500"
-  },
-  {
-    icon: Award,
-    title: "Growing with Intention",
-    description: "Early projects have laid a strong foundation for our mission: build solutions that last and relationships that matter.",
-    color: "text-purple-500"
-  },
-  {
-    icon: Target,
-    title: "Focused on Your Needs",
-    description: "We take time to understand your goals, and tailor solutions that actually fit, no one-size-fits-all here.",
-    color: "text-red-500"
-  },
-  {
-    icon: Building2,
-    title: "Nairobi-Based, Region-Focused",
-    description: "Strategically located in Nairobi's tech corridor, we're within reach and ready to support you as you grow.",
-    color: "text-corporate-blue"
-  }
-]
-.map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: index * 0.05 }}
-                viewport={{ once: true }}
-                whileHover={{ scale: 1.03 }}
-                className="sm:col-span-1 lg:col-span-1"
-              >
-                <Card className="h-full border border-border/20 bg-background/80 backdrop-blur-sm overflow-hidden group hover:shadow-lg transition-all duration-300 hover:border-primary/30">
-                  <CardContent className="p-4 sm:p-6 md:p-8">
-                    {/* Icon container with consistent coloring */}
-                    <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-lg mb-4 sm:mb-6 flex items-center justify-center ${feature.color.includes('text-') ? 'bg-background' : 'bg-accent/10'} group-hover:bg-accent/20 transition-colors`}>
-                      <feature.icon className={`h-6 w-6 sm:h-8 sm:w-8 ${feature.color}`} />
-                    </div>
-                    
-                    {/* Text content */}
-                    <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-foreground mb-2 sm:mb-3 group-hover:text-primary transition-colors duration-300">
-                      {feature.title}
-                    </h3>
-                    
-                    <p className="text-muted-foreground mb-4 sm:mb-6 text-sm sm:text-base md:text-lg leading-relaxed">
-                      {feature.description}
-                    </p>
-                    
-                    {/* Divider with subtle gradient */}
-                    <div className="h-px w-full bg-gradient-to-r from-transparent via-border/40 to-transparent my-3 sm:my-4"></div>
-                    
-                    {/* Badge with consistent styling */}
-                    <div className="flex justify-between items-center">
-                      <span className="text-xs font-mono text-muted-foreground/60 tracking-wider">
-                        ADV#{index + 1}
-                      </span>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+      {[
+        {
+          icon: Shield,
+          title: "AGPO Certified",
+          description: "Recognized as a government-compliant service provider, committed to inclusivity and responsible business practices.",
+          color: "text-green-500",
+          image: "/images/kenya/agpo-certified.jpg" // Kenyan government building
+        },
+        {
+          icon: Globe,
+          title: "Rooted in Africa",
+          description: "We blend global standards with a deep understanding of the East African business and ICT environment.",
+          color: "text-blue-500",
+          image: "/images/kenya/nairobi-skyline.jpg" // Nairobi skyline
+        },
+        {
+          icon: Users,
+          title: "Skilled & Certified Team",
+          description: "Led by professionals with vendor certifications and a hands-on approach to problem-solving.",
+          color: "text-amber-500",
+          image: "/images/kenya/tech-team.jpg" // Kenyan tech professionals
+        },
+        {
+          icon: Award,
+          title: "Growing with Intention",
+          description: "Early projects have laid a strong foundation for our mission: build solutions that last and relationships that matter.",
+          color: "text-purple-500",
+          image: "/images/kenya/growth.jpg" // African business growth imagery
+        },
+        {
+          icon: Target,
+          title: "Focused on Your Needs",
+          description: "We take time to understand your goals, and tailor solutions that actually fit, no one-size-fits-all here.",
+          color: "text-red-500",
+          image: "/images/kenya/client-meeting.jpg" // Kenyan business meeting
+        },
+        {
+          icon: Building2,
+          title: "Nairobi-Based, Region-Focused",
+          description: "Strategically located in Nairobi's tech corridor, we're within reach and ready to support you as you grow.",
+          color: "text-corporate-blue",
+          image: "/images/kenya/oppa-office.jpg" // OPPA office exterior
+        }
+      ].map((feature, index) => (
+        <motion.div
+          key={index}
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, delay: index * 0.05 }}
+          viewport={{ once: true }}
+          whileHover={{ scale: 1.03 }}
+          className="sm:col-span-1 lg:col-span-1"
+        >
+          <Card className="h-full border border-border/20 bg-background/80 backdrop-blur-sm overflow-hidden group hover:shadow-lg transition-all duration-300 hover:border-primary/30">
+            {/* Image Header */}
+            <div className="relative h-40 overflow-hidden">
+              <img 
+                src={feature.image}
+                alt={`Kenyan ${feature.title.toLowerCase()} context`}
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+              <div className="absolute top-4 right-4">
+                <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${feature.color.includes('text-') ? 'bg-background' : 'bg-accent/10'} backdrop-blur-sm`}>
+                  <feature.icon className={`h-5 w-5 ${feature.color}`} />
+                </div>
+              </div>
+            </div>
+            
+            <CardContent className="p-4 sm:p-6">
+              <h3 className="text-lg sm:text-xl font-bold text-foreground mb-2 sm:mb-3 group-hover:text-primary transition-colors duration-300">
+                {feature.title}
+              </h3>
+              
+              <p className="text-muted-foreground mb-4 text-sm sm:text-base leading-relaxed">
+                {feature.description}
+              </p>
+              
+              <div className="h-px w-full bg-gradient-to-r from-transparent via-border/40 to-transparent my-3 sm:my-4"></div>
+              
+              <div className="flex justify-between items-center">
+                <span className="text-xs font-mono text-muted-foreground/60 tracking-wider">
+                  ADV#{index + 1}
+                </span>
+                <span className="text-xs text-primary font-medium">
+                  Kenyan Certified
+                </span>
+              </div>
+            </CardContent>
+          </Card>
+        </motion.div>
+      ))}
+    </div>
+  </div>
+</section>
 
       {/* Team Section - Mobile Optimized */}
       <section className="py-16 sm:py-20 md:py-24 bg-background">
