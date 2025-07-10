@@ -5,14 +5,9 @@ import { Badge } from '@/components/ui/badge';
 import { Users, Target, Eye, Heart, Award, Building2, Globe, Shield } from 'lucide-react';
 import teamCollaborationImage from '@/assets/team-collaboration.jpg';
 import officeBuildingImage from '@/assets/office-building.jpg';
+import { motion } from 'framer-motion'
 
 const About = () => {
-  const stats = [
-    { number: '500+', label: 'Satisfied Clients', icon: Users },
-    { number: '24+', label: 'ICT Services', icon: Target },
-    { number: '10+', label: 'Years Experience', icon: Award },
-    { number: '100%', label: 'Client Satisfaction', icon: Heart },
-  ];
 
   return (
     <div className="min-h-screen bg-background">
@@ -66,7 +61,7 @@ const About = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-4xl font-bold text-foreground mb-6 font-poppins">
+              <h2 className="text-4xl md:text-5xl font-bold font-display mb-4 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-foreground to-primary">
                 Our Story
               </h2>
               <div className="space-y-6 text-lg text-muted-foreground">
@@ -115,188 +110,238 @@ const About = () => {
         </div>
       </section>
 
-      {/* Mission, Vision, Purpose */}
-      <section className="py-20 bg-background">
+      {/* Mission, Vision, Purpose - Enhanced with 3D Card Effect */}
+      <section className="py-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-foreground mb-4 font-poppins">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-20"
+          >
+            <Badge variant="outline" className="mb-6 bg-corporate-blue/10 text-corporate-blue border-corporate-blue/30">
               Our Foundation
+            </Badge>
+            <h2 className="text-4xl md:text-5xl font-bold font-display mb-4 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-foreground to-primary">
+              Core <span className="text-4xl md:text-5xl font-bold font-display mb-4 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-foreground to-primary">Principles</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Everything we do is guided by our core purpose, mission, and vision for the future
+              The bedrock of our operations and decision-making at OPPA Services
             </p>
-          </div>
+          </motion.div>
 
           <div className="grid lg:grid-cols-3 gap-8">
-            <Card className="text-center border-0 shadow-elite bg-gradient-card hover:shadow-hover transition-all duration-300">
-              <CardContent className="p-8">
-                <div className="w-16 h-16 bg-gradient-corporate rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Heart className="h-8 w-8 text-white" />
-                </div>
-                <h3 className="text-2xl font-bold text-foreground mb-4 font-poppins">Purpose</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  Deliver exceptional customer service that fuels Africa's evolving ICT industry, 
-                  creating lasting partnerships and driving technological advancement across the continent.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="text-center border-0 shadow-elite bg-gradient-card hover:shadow-hover transition-all duration-300">
-              <CardContent className="p-8">
-                <div className="w-16 h-16 bg-gradient-corporate rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Target className="h-8 w-8 text-white" />
-                </div>
-                <h3 className="text-2xl font-bold text-foreground mb-4 font-poppins">Mission</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  Provide inclusive, customer-centered ICT solutions tailored to meet client needs 
-                  and exceed expectations, ensuring every solution we deliver drives real business value.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="text-center border-0 shadow-elite bg-gradient-card hover:shadow-hover transition-all duration-300">
-              <CardContent className="p-8">
-                <div className="w-16 h-16 bg-gradient-corporate rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Eye className="h-8 w-8 text-white" />
-                </div>
-                <h3 className="text-2xl font-bold text-foreground mb-4 font-poppins">Vision</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  Become Africa's leader in cutting-edge ICT solutions — known for innovation, 
-                  excellence, and our unwavering commitment to client success.
-                </p>
-              </CardContent>
-            </Card>
+            {[
+              {
+                icon: Heart,
+                title: "Our Purpose",
+                description: "To empower Africa's digital economy through exceptional ICT solutions that create lasting value for our clients and communities.",
+                color: "from-rose-500 to-pink-600"
+              },
+              {
+                icon: Target,
+                title: "Our Mission",
+                description: "Deliver inclusive, client-focused ICT solutions that exceed expectations and drive tangible business transformation across industries.",
+                color: "from-blue-500 to-corporate-blue"
+              },
+              {
+                icon: Eye,
+                title: "Our Vision",
+                description: "To be Africa's undisputed leader in ICT innovation - recognized for excellence, reliability, and transformative impact.",
+                color: "from-indigo-500 to-purple-600"
+              }
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 40, scale: 0.95 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.6, delay: index * 0.1, type: 'spring' }}
+                viewport={{ once: true }}
+                whileHover={{ y: -10 }}
+                className="group perspective-1000"
+              >
+                <Card className="h-full border border-border/20 bg-background/80 backdrop-blur-sm overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform-style-preserve-3d group-hover:rotate-x-5">
+                  <div className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-5 group-hover:opacity-10 transition-opacity duration-500`}></div>
+                  <CardContent className="relative p-10 h-full flex flex-col">
+                    <div className={`w-20 h-20 rounded-2xl mb-8 flex items-center justify-center bg-gradient-to-br ${item.color} text-white shadow-lg`}>
+                      <item.icon className="h-10 w-10" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-foreground mb-6 font-poppins">{item.title}</h3>
+                    <p className="text-muted-foreground leading-relaxed flex-grow">{item.description}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Why Choose Us */}
-      <section className="py-20 bg-accent/20">
+      {/* Why Choose Us - Enhanced with Interactive Cards */}
+      <section className="py-24 bg-gradient-to-b from-accent/5 to-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-foreground mb-4 font-poppins">
-              Why Choose OPPA Services
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-20"
+          >
+            <Badge variant="outline" className="mb-6 bg-corporate-blue/10 text-corporate-blue border-corporate-blue/30">
+              Competitive Edge
+            </Badge>
+            <h2 className="text-4xl md:text-5xl font-bold font-display mb-4 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-foreground to-primary">
+              The <span className="text-4xl md:text-5xl font-bold font-display mb-4 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-foreground to-primary">OPPA Advantage</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              We're not just another ICT company - we're your technology transformation partner
+              Distinctive qualities that set us apart in the ICT landscape
             </p>
-          </div>
+          </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
                 icon: Shield,
                 title: "AGPO Certified",
-                description: "Officially certified and recognized by the government, ensuring compliance and quality standards in all our operations."
+                description: "Government-certified provider ensuring compliance with all regulatory standards and quality benchmarks.",
+                color: "text-green-500"
               },
               {
                 icon: Globe,
-                title: "Africa-Wide Reach",
-                description: "Serving clients across Kenya and East Africa with localized solutions that understand regional business needs."
+                title: "Pan-African Expertise",
+                description: "Deep regional knowledge combined with global best practices for contextually relevant solutions.",
+                color: "text-blue-500"
               },
               {
                 icon: Users,
-                title: "Expert Team",
-                description: "Certified professionals with deep technical expertise and years of experience in ICT systems integration."
+                title: "Certified Specialists",
+                description: "Highly skilled professionals with vendor certifications and proven implementation experience.",
+                color: "text-amber-500"
               },
               {
                 icon: Award,
                 title: "Proven Track Record",
-                description: "Over 500 satisfied clients and countless successful projects across various industries and sectors."
+                description: "500+ successful implementations across diverse industries and organizational scales.",
+                color: "text-purple-500"
               },
               {
                 icon: Target,
-                title: "Customer-Centric",
-                description: "Every solution is tailored to your specific needs, with ongoing support and maintenance to ensure success."
+                title: "Client-Centric Approach",
+                description: "Tailored solutions designed around your specific business objectives and operational needs.",
+                color: "text-red-500"
               },
               {
                 icon: Building2,
-                title: "Strategic Location",
-                description: "Centrally located in Nairobi's business district, making us easily accessible for consultations and support."
+                title: "Strategic Presence",
+                description: "Prime location in Nairobi's business hub ensures rapid response and local support.",
+                color: "text-corporate-blue"
               }
             ].map((feature, index) => (
-              <Card key={index} className="border-0 shadow-card hover:shadow-hover transition-all duration-300 hover:scale-105 bg-gradient-card">
-                <CardContent className="p-6">
-                  <feature.icon className="h-12 w-12 text-primary mb-4" />
-                  <h3 className="text-xl font-bold text-foreground mb-3">{feature.title}</h3>
-                  <p className="text-muted-foreground">{feature.description}</p>
-                </CardContent>
-              </Card>
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: index * 0.05 }}
+                viewport={{ once: true }}
+                whileHover={{ scale: 1.03 }}
+              >
+                <Card className="h-full border border-border/20 bg-background/70 backdrop-blur-sm overflow-hidden group hover:shadow-lg transition-all duration-300 hover:border-corporate-blue/30">
+                  <CardContent className="p-8">
+                    <div className={`${feature.color} mb-6`}>
+                      <feature.icon className="h-12 w-12 opacity-90" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-foreground mb-4 group-hover:text-corporate-blue transition-colors duration-300">{feature.title}</h3>
+                    <p className="text-muted-foreground mb-6 text-lg">{feature.description}</p>
+                    <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-border/30 to-transparent my-4"></div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-xs font-mono text-muted-foreground/50">ADV#{index + 1}</span>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Team Section */}
-      <section className="py-20 bg-background">
+      {/* Team Section - Enhanced with Profile Cards */}
+      <section className="py-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-foreground mb-4 font-poppins">
-              Meet Our Team
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-20"
+          >
+            <Badge variant="outline" className="mb-6 bg-corporate-blue/10 text-corporate-blue border-corporate-blue/30">
+              Leadership
+            </Badge>
+            <h2 className="text-4xl md:text-5xl font-bold font-display mb-4 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-foreground to-primary">
+              Meet Our <span className="text-4xl md:text-5xl font-bold font-display mb-4 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-foreground to-primary">Visionaries</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              The dedicated professionals behind OPPA's success
+              The strategic minds shaping OPPA's trajectory
             </p>
-          </div>
+          </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
             {[
               {
-                name: "James Kiprotich",
+                name: "Rachel Muthoga",
                 position: "Chief Executive Officer",
-                expertise: "Strategic Leadership & Business Development",
-                experience: "15+ years in ICT industry",
-                initials: "JK"
+                expertise: "Strategic Leadership | Human Rights Advocacy | Public Policy",
+                experience: "15+ years across legal, non-profit & private sector leadership",
+                initials: "RM",
+                photo: "src/images/rachel-muthoga.jpg",
+                color: "bg-gradient-to-br from-purple-600 to-pink-600"
               },
               {
-                name: "Sarah Wanjiku",
-                position: "Chief Technology Officer", 
-                expertise: "Network Infrastructure & Systems Integration",
-                experience: "12+ years in technical leadership",
-                initials: "SW"
-              },
-              {
-                name: "Michael Ochieng",
-                position: "Head of Operations",
-                expertise: "Project Management & Client Relations",
-                experience: "10+ years in operations management",
-                initials: "MO"
-              },
-              {
-                name: "Grace Mutua",
-                position: "Lead Network Engineer",
-                expertise: "Cisco Systems & Network Security",
-                experience: "8+ years in network engineering",
-                initials: "GM"
-              },
-              {
-                name: "David Mwangi",
-                position: "Security Systems Specialist",
-                expertise: "CCTV & Access Control Systems",
-                experience: "9+ years in security solutions",
-                initials: "DM"
-              },
-              {
-                name: "Linda Akinyi",
-                position: "Business Development Manager",
-                expertise: "Client Acquisition & Market Development",
-                experience: "7+ years in business development",
-                initials: "LA"
+                name: "Tyler David Wambua",
+                position: "Finance Director", 
+                expertise: "Financial Strategy | Risk Management | Corporate Governance",
+                experience: "4+ years in financial leadership roles",
+                initials: "TDW",
+                photo: "src/images/tyler-wambua.jpg",
+                color: "bg-gradient-to-br from-blue-600 to-corporate-blue"
               }
             ].map((member, index) => (
-              <Card key={index} className="text-center border-0 shadow-card hover:shadow-hover transition-all duration-300 hover:scale-105 bg-gradient-card">
-                <CardContent className="p-6">
-                  <div className="w-20 h-20 bg-gradient-corporate rounded-full flex items-center justify-center mx-auto mb-4 text-white font-bold text-xl">
-                    {member.initials}
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1, type: 'spring' }}
+                viewport={{ once: true }}
+                whileHover={{ y: -10 }}
+              >
+                <Card className="h-full border-0 overflow-hidden group shadow-xl hover:shadow-2xl transition-shadow duration-500">
+                  <div className="relative h-full min-h-[500px]">
+                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/80 z-10"></div>
+                    {member.photo ? (
+                      <img
+                        src={member.photo}
+                        alt={member.name}
+                        className="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-700 opacity-90 hover:opacity-95"
+                      />
+                    ) : (
+                      <div className={`w-full h-full ${member.color} flex items-center justify-center text-white font-bold text-6xl absolute inset-0`}>
+                        {member.initials}
+                      </div>
+                    )}
+                    
+                    <div className="relative z-20 h-full flex flex-col justify-end p-10">
+                      <div>
+                        <h3 className="text-3xl font-bold text-white mb-2">{member.name}</h3>
+                        <p className="text-corporate-blue-light font-semibold text-xl mb-6">{member.position}</p>
+                        <p className="text-white/90 text-lg mb-6">{member.expertise}</p>
+                        <Badge variant="secondary" className="bg-white/10 backdrop-blur-sm border-white/20 text-white hover:bg-white/20 text-sm">
+                          {member.experience}
+                        </Badge>
+                      </div>
+                    </div>
                   </div>
-                  <h3 className="text-xl font-bold text-foreground mb-2">{member.name}</h3>
-                  <p className="text-primary font-semibold mb-2">{member.position}</p>
-                  <p className="text-sm text-muted-foreground mb-3">{member.expertise}</p>
-                  <Badge variant="outline" className="text-xs">
-                    {member.experience}
-                  </Badge>
-                </CardContent>
-              </Card>
+                </Card>
+              </motion.div>
             ))}
           </div>
         </div>

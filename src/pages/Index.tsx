@@ -229,30 +229,7 @@ const Index: React.FC = () => {
         </div>
       </section>
 
-      {/* Stats Section
-      <section ref={statsRef} className="py-16 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <div key={index} className="text-center group animate-[fade-in_0.6s_ease-out]">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-corporate rounded-full mb-4 group-hover:shadow-glow transition-all duration-300 group-hover:scale-110">
-                  <stat.icon className="h-8 w-8 text-white" />
-                </div>
-                <div className="text-4xl font-bold text-foreground mb-2 font-poppins">
-                  {index === 0 && <span ref={clientCountRef}>0</span>}
-                  {index === 1 && <span>10+</span>}
-                  {index === 2 && <span>24+</span>}
-                  {index === 3 && <span ref={projectCountRef}>0</span>}
-                  {index === 0 && '+'}
-                  {index === 3 && '+'}
-                </div>
-                <div className="text-muted-foreground font-medium">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section> */}
-
+     
 {/* Pure Floating Logos Marquee */}
 <section className="py-20 bg-background overflow-hidden relative">
   <div className="max-w-7xl mx-auto px-6">
