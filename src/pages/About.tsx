@@ -323,7 +323,7 @@ const About = () => {
                 expertise: "Strategic Leadership | Human Rights Advocacy | Public Policy",
                 experience: "15+ years across legal, non-profit & private sector leadership",
                 initials: "RM",
-                photo: "./public/images/about/rachel-muthoga.jpg",
+                photo: "/images/about/rachel-muthoga.jpg",
                 color: "bg-gradient-to-br from-purple-600 to-pink-600"
               },
               {
@@ -332,7 +332,7 @@ const About = () => {
                 expertise: "Financial Strategy | Risk Management | Corporate Governance",
                 experience: "4+ years in financial leadership roles",
                 initials: "TDW",
-                photo: "src/images/tyler-wambua.jpg",
+                photo: "/images/about/tyler-wambua.jpg",
                 color: "bg-gradient-to-br from-blue-600 to-corporate-blue"
               }
             ].map((member, index) => (
