@@ -37,25 +37,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* Stats Section - COMMENTED OUT */}
-      {/*
-      <section className="py-16 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <Card key={index} className="text-center border-0 shadow-card hover:shadow-hover transition-all duration-300 hover:scale-105 bg-gradient-card">
-                <CardContent className="p-6">
-                  <stat.icon className="h-12 w-12 text-primary mx-auto mb-4" />
-                  <h3 className="text-3xl font-bold text-foreground mb-2">{stat.number}</h3>
-                  <p className="text-muted-foreground font-medium">{stat.label}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-      */}
-
       {/* Company Story */}
       <section className="py-20 bg-accent/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -83,26 +64,47 @@ const About = () => {
                 </p>
               </div>
             </div>
+            
+            {/* Enhanced Our Story Image Section */}
             <div className="relative">
-              <div className="relative bg-gradient-corporate rounded-2xl p-8 text-white overflow-hidden">
-                <div 
-                  className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
-                  style={{
-                    backgroundImage: `url('${officeBuildingImage}')`,
-                  }}
-                ></div>
-                <div className="relative z-10">
-                  <Building2 className="h-16 w-16 mb-6 opacity-80" />
-                  <h3 className="text-2xl font-bold mb-4">Our Headquarters</h3>
-                  <p className="text-primary-foreground/90 mb-4">
-                    Located in the prestigious Elysee Plaza, our modern offices reflect 
-                    our commitment to excellence and innovation.
-                  </p>
-                  <div className="text-sm opacity-80">
-                    <p>Elysee Plaza, 2nd Floor</p>
-                    <p>Kilimani Road, Nairobi</p>
-                    <p>P.O. Box 1455 – 00200</p>
+              <div className="relative overflow-hidden rounded-3xl shadow-2xl">
+                <img 
+                  src="/images/about/oppa-kenya-mission.png" 
+                  alt="OPPA Services - Our Story and Mission in Kenya"
+                  className="w-full h-[500px] object-cover transition-transform duration-700 hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+                <div className="absolute bottom-6 left-6 right-6">
+                  <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+                    <p className="text-white text-sm font-medium">
+                      Transforming Africa's Digital Future
+                    </p>
                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Office Building Card - Moved below the story grid */}
+          <div className="mt-16 max-w-2xl mx-auto">
+            <div className="relative bg-gradient-corporate rounded-2xl p-8 text-white overflow-hidden">
+              <div 
+                className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
+                style={{
+                  backgroundImage: `url('${officeBuildingImage}')`,
+                }}
+              ></div>
+              <div className="relative z-10">
+                <Building2 className="h-16 w-16 mb-6 opacity-80" />
+                <h3 className="text-2xl font-bold mb-4">Our Headquarters</h3>
+                <p className="text-primary-foreground/90 mb-4">
+                  Located in the prestigious Elysee Plaza, our modern offices reflect 
+                  our commitment to excellence and innovation.
+                </p>
+                <div className="text-sm opacity-80">
+                  <p>Elysee Plaza, 2nd Floor</p>
+                  <p>Kilimani Road, Nairobi</p>
+                  <p>P.O. Box 1455 – 00200</p>
                 </div>
               </div>
             </div>
@@ -110,7 +112,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* Mission, Vision, Purpose - Enhanced with 3D Card Effect */}
+      {/* Mission, Vision, Purpose - Enhanced with 3D Card Effect and Image */}
       <section className="py-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -129,6 +131,34 @@ const About = () => {
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               The bedrock of our operations and decision-making at OPPA Services
             </p>
+          </motion.div>
+
+          {/* Core Principles Image Section */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="mb-16"
+          >
+            <div className="relative max-w-4xl mx-auto">
+              <div className="relative overflow-hidden rounded-3xl shadow-2xl bg-gradient-to-br from-corporate-blue/10 to-purple-600/10">
+                <img 
+                  src="/images/about/oppa-vision.png" 
+                  alt="OPPA Services Core Values - Mission, Vision, and Purpose"
+                  className="w-full h-[400px] object-cover transition-transform duration-700 hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                <div className="absolute bottom-8 left-8 right-8">
+                  <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+                    <h3 className="text-white text-2xl font-bold mb-2">Our Guiding Principles</h3>
+                    <p className="text-white/90 text-lg">
+                      Purpose • Mission • Vision - The foundation of everything we do
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </motion.div>
 
           <div className="grid lg:grid-cols-3 gap-8">
@@ -293,7 +323,7 @@ const About = () => {
                 expertise: "Strategic Leadership | Human Rights Advocacy | Public Policy",
                 experience: "15+ years across legal, non-profit & private sector leadership",
                 initials: "RM",
-                photo: "src/images/rachel-muthoga.jpg",
+                photo: "./public/images/about/rachel-muthoga.jpg",
                 color: "bg-gradient-to-br from-purple-600 to-pink-600"
               },
               {
