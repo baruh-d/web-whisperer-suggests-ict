@@ -92,7 +92,7 @@ const ClientPortal = () => {
       <section className="py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-foreground mb-4 font-poppins">
+            <h2 className="text-3xl font-bold text-foreground mb-4 font-poppins text-gradient bg-gradient-to-r from-primary to-accent-blue">
               What You'll Get Access To
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -132,7 +132,7 @@ const ClientPortal = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl font-bold text-foreground mb-6 font-poppins">
+              <h2 className="text-3xl font-bold text-foreground mb-6 font-poppins text-gradient bg-gradient-to-r from-primary to-accent-blue">
                 Integrated with Odoo ERP
               </h2>
               <div className="space-y-6 text-lg text-muted-foreground">
@@ -187,33 +187,11 @@ const ClientPortal = () => {
                     We're working hard to bring you the most intuitive and powerful client portal experience.
                   </p>
                   <Badge className="bg-primary/20 text-primary px-4 py-2">
-                    Launching Q2 2024
+                    Launching Q3 2025
                   </Badge>
                 </div>
               </Card>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Early Access CTA */}
-      <section className="py-20 bg-gradient-hero text-white">
-        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold mb-6 font-poppins">
-            Get Early Access
-          </h2>
-          <p className="text-xl text-primary-foreground/90 mb-8">
-            Be among the first to experience our new client portal. Register your interest 
-            and we'll notify you as soon as it's available.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="bg-white text-primary hover:bg-white/90 text-lg px-8 py-4 font-semibold transition-all duration-300 hover:scale-105">
-              <Link to="/contact">Register Interest</Link>
-            </Button>
-            <Button asChild variant="outline" size="lg" className="border-white/30 text-white hover:bg-white/20 text-lg px-8 py-4 font-semibold transition-all duration-300 hover:scale-105">
-              <Link to="/contact">Learn More</Link>
-            </Button>
           </div>
         </div>
       </section>
