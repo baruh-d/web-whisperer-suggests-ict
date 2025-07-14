@@ -92,7 +92,7 @@ const ClientPortal = () => {
       <section className="py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-foreground mb-4 font-poppins text-gradient bg-gradient-to-r from-primary to-accent-blue">
+            <h2 className="text-3xl md:text-5xl font-bold font-display mb-4 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-foreground to-primary">
               What You'll Get Access To
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -132,7 +132,7 @@ const ClientPortal = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl font-bold text-foreground mb-6 font-poppins text-gradient bg-gradient-to-r from-primary to-accent-blue">
+              <h2 className="text-3xl md:text-5xl font-bold font-display mb-4 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-foreground to-primary">
                 Integrated with Odoo ERP
               </h2>
               <div className="space-y-6 text-lg text-muted-foreground">
