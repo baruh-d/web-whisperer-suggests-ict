@@ -199,7 +199,7 @@ const Contact = () => {
               <Card className="relative overflow-hidden border-0 shadow-2xl bg-gradient-to-br from-background to-card/50 backdrop-blur-sm">
                 <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10 pointer-events-none"></div>
                 <CardHeader>
-                  <CardTitle className="text-3xl font-bold font-display mb-2">
+                  <CardTitle className="text-3xl md:text-3xl font-bold font-display mb-4 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-foreground to-primary">
                     Get Your Solution Now
                   </CardTitle>
                   <p className="text-muted-foreground">
@@ -386,7 +386,7 @@ const Contact = () => {
             {/* Enhanced Contact Information */}
             <div className="space-y-8">
               <div>
-                <h2 className="text-3xl font-bold font-display mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
+                <h2 className="text-3xl md:text-3xl font-bold font-display mb-4 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-foreground to-primary">
                   Contact Information
                 </h2>
                 <p className="text-muted-foreground text-lg mb-8">
@@ -511,7 +511,7 @@ const Contact = () => {
 <section className="py-12 md:py-20 bg-accent/5">
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div className="text-center mb-8 md:mb-16">
-      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold font-display mb-3 md:mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
+      <h2 className="text-4xl md:text-5xl font-bold font-display mb-4 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-foreground to-primary sm:text-3xl md:text-4xl font-bold font-display mb-3 md:mb-4 bg-clip-text text-transparent">
         Visit Our Headquarters
       </h2>
       <p className="text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto">
