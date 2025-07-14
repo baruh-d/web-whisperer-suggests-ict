@@ -21,7 +21,7 @@ const containerVariants = {
       delayChildren: 0.3
     }
   }
-};
+} as const;
 
 const childVariants = {
   hidden: { y: 20, opacity: 0 },
@@ -29,12 +29,12 @@ const childVariants = {
     y: 0,
     opacity: 1,
     transition: {
-      type: 'spring',
+      type: "spring" as const,
       damping: 12,
       stiffness: 100
     }
   }
-};
+} as const;
 
 const backgroundVariants = {
   hidden: { scale: 1.1 },
@@ -42,10 +42,11 @@ const backgroundVariants = {
     scale: 1,
     transition: {
       duration: 1.2,
-      ease: [0.43, 0.13, 0.23, 0.96]
+      ease: [0.43, 0.13, 0.23, 0.96] as const
     }
   }
-};
+} as const;
+
 const Contact = () => {
   const allServices = services;
   const [formData, setFormData] = useState({
