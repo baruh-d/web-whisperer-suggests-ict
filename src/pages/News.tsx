@@ -12,10 +12,11 @@ import {
 } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
 import newsMediaCenterImage from '@/assets/news-media-center.jpg';
-import blogPlaceholder from '@/assets/blog-placeholder.jpg';
+import blogPlaceholder from '@/assets/blog-placeholder.png';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Input } from '@/components/ui/input';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import NewsletterSignup from '@/pages/NewsletterSignup';
 
 // Mock data fallback
 const MOCK_NEWS = [
@@ -764,106 +765,9 @@ const News = () => {
         </>
       )}
 
-      {/* Newsletter Signup */}
-      <section className="py-24 bg-gradient-to-br from-primary/90 to-primary-dark/90 text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/noise.png')] opacity-10"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-white/0"></div>
-        
-        <div className="absolute top-10 left-10 w-32 h-32 rounded-full bg-white/5 blur-xl animate-float-advanced delay-100"></div>
-        <div className="absolute bottom-20 right-20 w-40 h-40 rounded-full bg-white/5 blur-xl animate-float-advanced delay-300"></div>
-        
-        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div 
-            className="inline-flex items-center justify-center mb-8"
-            initial={{ scale: 0, rotate: -15 }}
-            animate={{ scale: 1, rotate: 0 }}
-            transition={{ type: "spring", damping: 10, stiffness: 100 }}
-          >
-            <div className="relative">
-              <div className="absolute inset-0 bg-white/20 rounded-full blur-md"></div>
-              <div className="relative bg-gradient-to-br from-white to-white/80 p-5 rounded-full shadow-lg">
-                <Mail className="h-10 w-10 text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-dark" />
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.h2 
-            className="text-4xl md:text-5xl font-bold mb-6 font-display bg-clip-text text-transparent bg-gradient-to-r from-white to-white/80"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            Stay In The Loop
-          </motion.h2>
-          
-          <motion.p 
-            className="text-xl text-white/90 mb-10 max-w-2xl mx-auto leading-relaxed"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            Get exclusive insights, early access to new features, and curated industry content delivered straight to your inbox.
-          </motion.p>
-          
-          <motion.div 
-            className="flex flex-col sm:flex-row gap-4 max-w-2xl mx-auto"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            <div className="relative flex-1">
-              <Input
-                type="email"
-                placeholder="Your professional email"
-                className="w-full h-14 px-6 text-foreground bg-white/95 border-0 focus:ring-2 focus:ring-white/30 focus:outline-none rounded-full shadow-lg backdrop-blur-sm placeholder:text-muted-foreground/70"
-              />
-              <div className="absolute inset-0 rounded-full pointer-events-none border border-white/20 mix-blend-overlay"></div>
-            </div>
-            
-            <Button 
-              className="h-14 px-8 bg-white text-primary hover:bg-white/95 hover:shadow-xl rounded-full text-lg font-semibold transition-all duration-300 group relative overflow-hidden"
-              size="lg"
-            >
-              <span className="relative z-10 flex items-center">
-                Subscribe
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </span>
-              <span className="absolute inset-0 bg-gradient-to-r from-transparent to-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-            </Button>
-          </motion.div>
-          
-          <motion.div 
-            className="flex items-center justify-center mt-6 text-sm text-white/70"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-          >
-            <CheckCircle className="h-4 w-4 mr-2 text-white/50" />
-            <span>We respect your privacy. Unsubscribe anytime.</span>
-          </motion.div>
-          
-          <motion.div 
-            className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm text-white/60"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
-          >
-            <div className="flex items-center">
-              <div className="flex -space-x-2 mr-3">
-                {[1, 2, 3].map((i) => (
-                  <div key={i} className="h-8 w-8 rounded-full bg-white/10 border-2 border-white/20"></div>
-                ))}
-              </div>
-              <span>Join 5,000+ professionals</span>
-            </div>
-            <div className="flex items-center">
-              <Sparkles className="h-4 w-4 mr-1 text-yellow-300" />
-              <span>Exclusive content weekly</span>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
+     {/* Newsletter Signup */}
+    <NewsletterSignup />
+      {/* Footer */}
       <Footer />
     </div>
   );

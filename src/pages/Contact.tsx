@@ -11,6 +11,18 @@ import { services } from '@/config/services';
 import contactConsultationImage from '@/assets/contact-consultation.jpg';
 import { LoadingSpinner } from '@/components/ui/loadingspinner';
 import { motion } from 'framer-motion'
+import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+
+// Add these constants above your component
+const mapContainerStyle = {
+  width: '100%',
+  height: '100%'
+};
+
+const center = {
+  lat: -1.2921,  // Nairobi coordinates
+  lng: 36.8219
+};
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -123,13 +135,13 @@ const Contact = () => {
     window.open(url, '_blank');
   };
 
-  const makePhoneCall = (number) => {
+  const makePhoneCall = (number: string) => {
     window.location.href = `tel:${number}`;
   };
 
-  const sendEmail = (email) => {
+  const sendEmail = (email: string) => {
     window.location.href = `mailto:${email}`;
-  };
+};
 
   return (
     <div className="min-h-screen bg-background">
@@ -495,56 +507,70 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Interactive Map Section */}
-      <section className="py-20 bg-accent/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold font-display mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
-              Visit Our Headquarters
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Our centrally located office in Nairobi is designed for productive meetings and consultations.
-            </p>
-          </div>
-          
-          {/* Map Container */}
-          <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-border/20 h-96">
-            {/* Actual map would be embedded here */}
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 flex items-center justify-center">
-              <div className="text-center p-8 max-w-md">
-                <MapPin className="h-12 w-12 text-primary mx-auto mb-4 animate-bounce" />
-                <h3 className="text-xl font-semibold text-foreground mb-2">Elysee Plaza, 2nd Floor</h3>
-                <p className="text-muted-foreground mb-4">
-                  Kilimani Road, Nairobi, Kenya
-                </p>
-                <Button 
-                  variant="outline" 
-                  className="border-primary/30 text-primary hover:bg-primary/5"
-                  onClick={() => window.open('https://maps.google.com?q=Elysee+Plaza,+Kilimani+Road,+Nairobi')}
-                >
-                  Get Directions
-                </Button>
-              </div>
-            </div>
-            
-            {/* Map Overlay Info */}
-            <div className="absolute bottom-6 left-6 bg-background/90 backdrop-blur-sm p-4 rounded-lg shadow-sm max-w-xs">
-              <h4 className="font-semibold text-foreground mb-1">OPPA Services HQ</h4>
-              <p className="text-sm text-muted-foreground mb-2">
-                P.O. Box 1455 – 00200, Nairobi
-              </p>
-              <Button 
-                variant="link" 
-                size="sm" 
-                className="text-primary h-auto p-0"
-                onClick={() => window.open('/parking-info', '_blank')}
-              >
-                View parking information →
-              </Button>
-            </div>
-          </div>
+      {/* Location Section - Responsive Design */}
+<section className="py-12 md:py-20 bg-accent/5">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="text-center mb-8 md:mb-16">
+      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold font-display mb-3 md:mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
+        Visit Our Headquarters
+      </h2>
+      <p className="text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto">
+        Our centrally located office in Nairobi is designed for productive meetings and consultations.
+      </p>
+    </div>
+    
+    <div className="relative rounded-xl md:rounded-2xl overflow-hidden shadow-lg md:shadow-2xl border border-border/20 h-64 sm:h-80 md:h-96 bg-gradient-to-br from-primary/5 to-accent/5 flex items-center justify-center">
+      {/* Location Content - Responsive layout */}
+      <div className="text-center p-4 sm:p-6 md:p-8 w-full max-w-md mx-auto">
+        <MapPin className="h-12 sm:h-14 md:h-16 w-12 sm:w-14 md:w-16 mx-auto text-primary mb-3 md:mb-4" />
+        
+        <div className="space-y-1 md:space-y-2 mb-4 md:mb-6">
+          <h3 className="text-lg sm:text-xl md:text-2xl font-semibold">OPPA Services HQ</h3>
+          <p className="text-xs sm:text-sm md:text-base text-muted-foreground">
+            Elysee Plaza, Kilimani Road
+          </p>
+          <p className="text-xs sm:text-sm md:text-base text-muted-foreground">
+            P.O. Box 1455 – 00200, Nairobi
+          </p>
         </div>
-      </section>
+        
+        <div className="flex flex-col space-y-2 sm:space-y-0 sm:flex-row sm:space-x-3 justify-center">
+          <Button 
+            variant="default"
+            size="sm"
+            className="w-full sm:w-auto text-xs sm:text-sm"
+            onClick={() => window.open('https://maps.google.com?q=Elysee+Plaza,+Kilimani+Road,+Nairobi')}
+          >
+            <MapPin className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
+            View on Maps
+          </Button>
+          <Button 
+            variant="outline"
+            size="sm"
+            className="w-full sm:w-auto text-xs sm:text-sm"
+            onClick={() => window.open('tel:+254705576746')}
+          >
+            <Phone className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
+            Call Directions
+          </Button>
+        </div>
+      </div>
+      
+      {/* Bottom info box - Responsive positioning */}
+      <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 md:bottom-6 md:left-6 bg-background/90 backdrop-blur-sm p-2 sm:p-3 md:p-4 rounded-lg shadow-sm max-w-[180px] sm:max-w-xs">
+        <h4 className="font-semibold text-foreground text-xs sm:text-sm md:text-base mb-1">Parking Available</h4>
+        <Button 
+          variant="link" 
+          size="sm"
+          className="text-primary h-auto p-0 text-xs sm:text-sm"
+          onClick={() => window.open('https://maps.google.com?q=Elysee+Plaza,+Kilimani+Road,+Nairobi')}
+        >
+          View details →
+        </Button>
+      </div>
+    </div>
+  </div>
+</section>
 
       <Footer />
     </div>
