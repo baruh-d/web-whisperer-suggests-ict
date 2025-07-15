@@ -6,7 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import TechMascot from '@/components/TechMascot';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
-import Tilt from "react-parallax-tilt";
+// import Tilt from "react-parallax-tilt";
 import { 
   useHeroAnimation, 
   useServicesAnimation, 
@@ -300,67 +300,65 @@ const Index: React.FC = () => {
     </div>
   </div>
 </section>
-     <section ref={aboutRef} className="py-20 lg:py-24 bg-accent/20 relative overflow-hidden">
-
-  {/* Subtle animated backgrounds */}
+      {/* Why Choose OPPA - Enhanced */}
+      <section ref={aboutRef} className="py-20 lg:py-24 bg-accent/20 relative overflow-hidden">
+  {/* Enhanced background with subtle patterns */}
   <div className="absolute inset-0 overflow-hidden">
     <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/5 rounded-full blur-3xl animate-pulse"></div>
     <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-accent-blue/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
   </div>
-
+  
   <div 
     className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
-    style={{ backgroundImage: `url('${professionalMeetingImage}')` }}
+    style={{
+      backgroundImage: `url('${professionalMeetingImage}')`,
+    }}
   ></div>
-
+  
   <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div className="text-center mb-16 animate-[fade-in_0.6s_ease-out]">
       <div className="inline-flex items-center gap-2 px-4 py-2 bg-accent-blue/20 backdrop-blur-sm text-accent-blue-foreground rounded-full text-sm font-medium mb-6">
         <div className="w-2 h-2 bg-accent-blue rounded-full animate-pulse"></div>
         Kenya's #1 ICT Partner
       </div>
-
+      
       <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-6 leading-tight font-poppins">
-        Why Choose <span className="bg-gradient-corporate bg-clip-text text-transparent">OPPA Services</span>?
+        Why Choose 
+        <span className="bg-gradient-corporate bg-clip-text text-transparent"> OPPA Services</span>?
       </h2>
-
+      
       <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
         Kenya's most trusted ICT systems integrator with a proven track record of excellence
       </p>
     </div>
 
-    {/* Feature cards with tilt + animation */}
     <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8" ref={featuresRef}>
       {features.map((feature, index) => (
-        <motion.div
-          key={index}
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: index * 0.15 }}
+        <div 
+          key={index} 
+          className="feature-card group text-center bg-card/90 backdrop-blur-sm rounded-2xl p-8 border border-border/50 hover:border-accent-blue/50 hover:shadow-elite transition-all duration-500 hover:-translate-y-2 opacity-0 translate-x-10 data-[visible=true]:opacity-100 data-[visible=true]:translate-x-0"
+          style={{ transitionDelay: `${index * 100}ms` }}
+          data-visible={true}
         >
-          <Tilt glareEnable={false} tiltMaxAngleX={10} tiltMaxAngleY={10}>
-            <div className="relative feature-card group text-center bg-card/90 backdrop-blur-sm rounded-2xl p-8 border border-border/50 hover:border-accent-blue/50 hover:shadow-elite transition-all duration-500 hover:-translate-y-2">
-              
-              <div className="absolute inset-0 rounded-2xl bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              
-              <div className="relative w-16 h-16 bg-gradient-corporate rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-corporate">
-                {feature.icon}
-                <div className="absolute inset-0 rounded-2xl bg-primary-glow/20 group-hover:bg-primary-glow/30 transition-colors duration-300"></div>
-              </div>
-
-              <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-accent-blue transition-colors duration-300">
-                {feature.title}
-              </h3>
-
-              <p className="text-muted-foreground leading-relaxed group-hover:text-foreground/80 transition-colors duration-300">
-                {feature.description}
-              </p>
-
-              <div className="w-2 h-2 bg-accent-blue rounded-full mx-auto mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            </div>
-          </Tilt>
-        </motion.div>
+          {/* Subtle glow effect on hover */}
+          <div className="absolute inset-0 rounded-2xl bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          
+          <div className="relative w-16 h-16 bg-gradient-corporate rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-corporate">
+            {feature.icon}
+            <div className="absolute inset-0 rounded-2xl bg-primary-glow/20 group-hover:bg-primary-glow/30 transition-colors duration-300"></div>
+          </div>
+          
+          <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-accent-blue transition-colors duration-300">
+            {feature.title}
+          </h3>
+          
+          <p className="text-muted-foreground leading-relaxed group-hover:text-foreground/80 transition-colors duration-300">
+            {feature.description}
+          </p>
+          
+          {/* Optional: Add a small indicator dot */}
+          <div className="w-2 h-2 bg-accent-blue rounded-full mx-auto mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        </div>
       ))}
     </div>
   </div>
