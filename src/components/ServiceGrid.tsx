@@ -277,7 +277,7 @@ const ServicesGrid: React.FC<ServicesGridProps> = ({ serviceCategories }) => {
                   <div className="absolute inset-0 bg-gradient-to-t from-card/70 to-transparent"></div>
                   
                   {/* Static icon - no blinking */}
-                  <div className={`absolute top-4 right-4 w-12 h-12 rounded-xl bg-${category.color} flex items-center justify-center shadow-lg`}>
+                  <div className={`absolute top-4 right-4 w-12 h-12 rounded-xl bg-${category.color} flex items-center justify-center shadow-sm`}>
                     <IconComponent className="h-6 w-6 text-white" />
                   </div>
                 </div>
