@@ -206,25 +206,46 @@ const About = () => {
         </div>
       </section>
 
-     {/* Why Choose Us - With Kenyan Images */}
-<section className="py-16 sm:py-20 md:py-24 bg-gradient-to-b from-accent/5 to-background">
+     {/* Why Choose Us - Enhanced with Slide Animations */}
+<section className="py-16 sm:py-20 md:py-24 bg-gradient-to-b from-accent/5 to-background overflow-hidden">
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <motion.div
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      transition={{ duration: 0.6 }}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
       viewport={{ once: true }}
       className="text-center mb-12 sm:mb-16 md:mb-20"
     >
-      <Badge variant="outline" className="inline-block mb-3 text-sm font-semibold text-primary bg-primary/10 px-4 py-1 rounded-full text-xs sm:text-sm">
-        Competitive Edge
-      </Badge>
-      <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-display mb-4 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-foreground to-primary leading-tight">
+      <motion.div
+        initial={{ scale: 0.8, opacity: 0 }}
+        whileInView={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+        viewport={{ once: true }}
+      >
+        <Badge variant="outline" className="inline-block mb-3 text-sm font-semibold text-primary bg-primary/10 px-4 py-1 rounded-full text-xs sm:text-sm">
+          Competitive Edge
+        </Badge>
+      </motion.div>
+      
+      <motion.h2
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.4 }}
+        viewport={{ once: true }}
+        className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-display mb-4 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-foreground to-primary leading-tight"
+      >
         The <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-display mb-4 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-foreground to-primary">OPPA Advantage</span>
-      </h2>
-      <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto px-2">
+      </motion.h2>
+      
+      <motion.p
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.6 }}
+        viewport={{ once: true }}
+        className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto px-2"
+      >
         Distinctive qualities that set us apart in the ICT landscape
-      </p>
+      </motion.p>
     </motion.div>
 
     <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
@@ -234,97 +255,235 @@ const About = () => {
           title: "AGPO Certified",
           description: "Recognized as a government-compliant service provider, committed to inclusivity and responsible business practices.",
           color: "text-green-500",
-          image: "/images/kenya/agpo-certified.jpg" // Kenyan government building
+          bgColor: "bg-green-500/10",
+          image: "/images/kenya/agpo-certified.jpg"
         },
         {
           icon: Globe,
           title: "Rooted in Africa",
           description: "We blend global standards with a deep understanding of the East African business and ICT environment.",
           color: "text-blue-500",
-          image: "/images/kenya/nairobi-skyline.jpg" // Nairobi skyline
+          bgColor: "bg-blue-500/10",
+          image: "/images/kenya/nairobi-skyline.jpg"
         },
         {
           icon: Users,
           title: "Skilled & Certified Team",
           description: "Led by professionals with vendor certifications and a hands-on approach to problem-solving.",
           color: "text-amber-500",
-          image: "/images/kenya/tech-team.jpg" // Kenyan tech professionals
+          bgColor: "bg-amber-500/10",
+          image: "/images/kenya/tech-team.jpg"
         },
         {
           icon: Award,
           title: "Growing with Intention",
           description: "Early projects have laid a strong foundation for our mission: build solutions that last and relationships that matter.",
           color: "text-purple-500",
-          image: "/images/kenya/growth.jpg" // African business growth imagery
+          bgColor: "bg-purple-500/10",
+          image: "/images/kenya/growth.jpg"
         },
         {
           icon: Target,
           title: "Focused on Your Needs",
           description: "We take time to understand your goals, and tailor solutions that actually fit, no one-size-fits-all here.",
           color: "text-red-500",
-          image: "/images/kenya/client-meeting.jpg" // Kenyan business meeting
+          bgColor: "bg-red-500/10",
+          image: "/images/kenya/client-meeting.jpg"
         },
         {
           icon: Building2,
           title: "Nairobi-Based, Region-Focused",
           description: "Strategically located in Nairobi's tech corridor, we're within reach and ready to support you as you grow.",
           color: "text-corporate-blue",
-          image: "/images/kenya/oppa-office.jpg" // OPPA office exterior
+          bgColor: "bg-corporate-blue/10",
+          image: "/images/kenya/oppa-office.jpg"
         }
       ].map((feature, index) => (
         <motion.div
           key={index}
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, delay: index * 0.05 }}
-          viewport={{ once: true }}
-          whileHover={{ scale: 1.03 }}
+          initial={{ 
+            opacity: 0, 
+            x: -60,
+            scale: 0.9 
+          }}
+          whileInView={{ 
+            opacity: 1, 
+            x: 0,
+            scale: 1 
+          }}
+          transition={{ 
+            duration: 0.7,
+            delay: index * 0.15,
+            ease: [0.25, 0.46, 0.45, 0.94]
+          }}
+          viewport={{ once: true, margin: "-50px" }}
+          whileHover={{ 
+            scale: 1.03,
+            y: -5,
+            transition: { duration: 0.3 }
+          }}
           className="sm:col-span-1 lg:col-span-1"
         >
-          <Card className="h-full border border-border/20 bg-background/80 backdrop-blur-sm overflow-hidden group hover:shadow-lg transition-all duration-300 hover:border-primary/30">
-            {/* Image Header */}
-            <div className="relative h-40 overflow-hidden">
-              <img 
+          <Card className="h-full border border-border/20 bg-background/80 backdrop-blur-sm overflow-hidden group hover:shadow-xl transition-all duration-500 hover:border-primary/40 relative">
+            {/* Enhanced Image Header with Parallax Effect */}
+            <motion.div 
+              className="relative h-40 overflow-hidden"
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.6 }}
+            >
+              <motion.img 
                 src={feature.image}
                 alt={`Kenyan ${feature.title.toLowerCase()} context`}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                className="w-full h-full object-cover"
                 loading="lazy"
+                whileHover={{ scale: 1.1 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
-              <div className="absolute top-4 right-4">
-                <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${feature.color.includes('text-') ? 'bg-background' : 'bg-accent/10'} backdrop-blur-sm`}>
+              
+              {/* Animated Gradient Overlay */}
+              <motion.div 
+                className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent"
+                initial={{ opacity: 0.6 }}
+                whileHover={{ opacity: 0.3 }}
+                transition={{ duration: 0.4 }}
+              />
+              
+              {/* Animated Floating Icon */}
+              <motion.div 
+                className="absolute top-4 right-4"
+                initial={{ scale: 1, rotate: 0 }}
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                transition={{ duration: 0.3 }}
+              >
+                <motion.div 
+                  className={`w-10 h-10 rounded-lg flex items-center justify-center bg-background/90 backdrop-blur-sm border border-border/30 ${feature.bgColor}`}
+                  whileHover={{ 
+                    boxShadow: `0 0 20px ${feature.color.includes('green') ? '#10b981' : feature.color.includes('blue') ? '#3b82f6' : feature.color.includes('amber') ? '#f59e0b' : feature.color.includes('purple') ? '#8b5cf6' : feature.color.includes('red') ? '#ef4444' : '#0ea5e9'}40`
+                  }}
+                >
                   <feature.icon className={`h-5 w-5 ${feature.color}`} />
+                </motion.div>
+              </motion.div>
+              
+              {/* Sliding Number Badge */}
+              <motion.div
+                className="absolute bottom-4 left-4"
+                initial={{ x: -20, opacity: 0 }}
+                whileInView={{ x: 0, opacity: 1 }}
+                transition={{ duration: 0.5, delay: index * 0.1 + 0.3 }}
+                viewport={{ once: true }}
+              >
+                <div className="w-8 h-8 rounded-full bg-primary/90 backdrop-blur-sm flex items-center justify-center">
+                  <span className="text-xs font-bold text-primary-foreground">
+                    {index + 1}
+                  </span>
                 </div>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
             
-            <CardContent className="p-4 sm:p-6">
-              <h3 className="text-lg sm:text-xl font-bold text-foreground mb-2 sm:mb-3 group-hover:text-primary transition-colors duration-300">
+            <CardContent className="p-4 sm:p-6 relative">
+              {/* Animated Title */}
+              <motion.h3 
+                className="text-lg sm:text-xl font-bold text-foreground mb-2 sm:mb-3 group-hover:text-primary transition-colors duration-300"
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.1 + 0.5 }}
+                viewport={{ once: true }}
+              >
                 {feature.title}
-              </h3>
+              </motion.h3>
               
-              <p className="text-muted-foreground mb-4 text-sm sm:text-base leading-relaxed">
+              {/* Animated Description */}
+              <motion.p 
+                className="text-muted-foreground mb-4 text-sm sm:text-base leading-relaxed"
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.1 + 0.7 }}
+                viewport={{ once: true }}
+              >
                 {feature.description}
-              </p>
+              </motion.p>
               
-              <div className="h-px w-full bg-gradient-to-r from-transparent via-border/40 to-transparent my-3 sm:my-4"></div>
+              {/* Animated Divider */}
+              <motion.div 
+                className="h-px w-full bg-gradient-to-r from-transparent via-border/40 to-transparent my-3 sm:my-4"
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                transition={{ duration: 0.6, delay: index * 0.1 + 0.9 }}
+                viewport={{ once: true }}
+              />
               
-              <div className="flex justify-between items-center">
-                <span className="text-xs font-mono text-muted-foreground/60 tracking-wider">
-                  ADV#{index + 1}
-                </span>
-                <span className="text-xs text-primary font-medium">
-                  Kenyan Certified
-                </span>
-              </div>
+              {/* Enhanced Footer with Slide Animation */}
+              <motion.div 
+                className="flex justify-between items-center"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.1 + 1.1 }}
+                viewport={{ once: true }}
+              >
+                <motion.span 
+                  className="text-xs font-mono text-muted-foreground/60 tracking-wider"
+                  whileHover={{ scale: 1.05 }}
+                >
+                  ADV#{String(index + 1).padStart(2, '0')}
+                </motion.span>
+                
+                <motion.div
+                  className="flex items-center space-x-2"
+                  whileHover={{ x: 5 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                  <span className="text-xs text-primary font-medium">
+                    Kenyan Certified
+                  </span>
+                </motion.div>
+              </motion.div>
+              
+              {/* Hover Glow Effect */}
+              <motion.div
+                className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                style={{
+                  background: `radial-gradient(circle at 50% 50%, ${feature.color.includes('green') ? '#10b98130' : feature.color.includes('blue') ? '#3b82f630' : feature.color.includes('amber') ? '#f59e0b30' : feature.color.includes('purple') ? '#8b5cf630' : feature.color.includes('red') ? '#ef444430' : '#0ea5e930'} 0%, transparent 70%)`
+                }}
+              />
             </CardContent>
           </Card>
         </motion.div>
       ))}
     </div>
+    
+    {/* Additional Floating Elements */}
+    <motion.div
+      className="absolute top-20 left-10 w-20 h-20 bg-primary/5 rounded-full blur-xl"
+      animate={{
+        x: [0, 30, 0],
+        y: [0, -20, 0],
+        scale: [1, 1.2, 1],
+      }}
+      transition={{
+        duration: 8,
+        repeat: Infinity,
+        ease: "easeInOut"
+      }}
+    />
+    
+    <motion.div
+      className="absolute bottom-20 right-10 w-16 h-16 bg-accent/5 rounded-full blur-lg"
+      animate={{
+        x: [0, -25, 0],
+        y: [0, 15, 0],
+        scale: [1, 0.8, 1],
+      }}
+      transition={{
+        duration: 6,
+        repeat: Infinity,
+        ease: "easeInOut",
+        delay: 2
+      }}
+    />
   </div>
 </section>
-
       {/* Team Section - Mobile Optimized */}
       <section className="py-16 sm:py-20 md:py-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
