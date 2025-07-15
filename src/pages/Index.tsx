@@ -31,6 +31,7 @@ import {
   Check
 } from 'lucide-react';
 import { motion } from 'framer-motion';
+import ServicesGrid from '@/components/ServiceGrid';
 
 // Import images
 import professionalMeetingImage from '@/assets/professional-meeting.jpg';
@@ -136,12 +137,12 @@ const Index: React.FC = () => {
     }
   ];
 
-  const stats = [
-    { icon: Users, label: 'Happy Clients', value: '500+' },
-    { icon: Award, label: 'Years Experience', value: '10+' },
-    { icon: Zap, label: 'Services Offered', value: '24+' },
-    { icon: Globe, label: 'Projects Completed', value: '1000+' },
-  ];
+  // const stats = [
+  //   { icon: Users, label: 'Happy Clients', value: '500+' },
+  //   { icon: Award, label: 'Years Experience', value: '10+' },
+  //   { icon: Zap, label: 'Services Offered', value: '24+' },
+  //   { icon: Globe, label: 'Projects Completed', value: '1000+' },
+  // ];
 
   // Partner logos with names for better accessibility
   const partners = [
@@ -282,69 +283,8 @@ const Index: React.FC = () => {
     </div>
 
     {/* Services Grid */}
-<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-  {serviceCategories.map((category, index) => {
-    const IconComponent = iconMap[category.icon] || Zap;
-    
-    return (
-      <Link 
-        key={category.id}
-        to={`/services#${category.id}`}
-        className="block group"
-      >
-        <Card 
-          className="group relative overflow-hidden border border-border/50 hover:border-primary/30 transition-all duration-500 hover:shadow-xl hover:-translate-y-2 bg-gradient-to-b from-card to-card/80 cursor-pointer h-full"
-        >
-          {/* Glow effect */}
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-          
-          <CardContent className="p-8 relative z-10">
-            <div className="space-y-5">
-              {/* Icon with gradient background */}
-              <div className="flex items-center justify-between">
-                <div className={`w-14 h-14 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-md`}>
-                  <IconComponent className="h-6 w-6 text-white" />
-                </div>
-                <ArrowRight className="h-5 w-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-2 transition-all duration-300" />
-              </div>
-              
-              {/* Content */}
-              <div>
-                <h3 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors duration-300">
-                  {category.title}
-                </h3>
-                <p className="text-muted-foreground mb-4">
-                  {category.description}
-                </p>
-              </div>
-              
-              {/* Features list */}
-              <ul className="space-y-2 text-sm">
-                <li className="flex items-start">
-                  <CheckCircle className="h-4 w-4 text-emerald-500 mt-0.5 mr-2 flex-shrink-0" />
-                  <span>Customized solutions</span>
-                </li>
-                <li className="flex items-start">
-                  <CheckCircle className="h-4 w-4 text-emerald-500 mt-0.5 mr-2 flex-shrink-0" />
-                  <span>Expert implementation</span>
-                </li>
-                <li className="flex items-start">
-                  <CheckCircle className="h-4 w-4 text-emerald-500 mt-0.5 mr-2 flex-shrink-0" />
-                  <span>Ongoing support</span>
-                </li>
-              </ul>
-              
-              <div className="inline-flex items-center mt-4 text-sm font-medium text-primary group-hover:text-primary/80 transition-colors">
-                Explore {category.title} 
-                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      </Link>
-    );
-  })}
-</div>
+    <ServicesGrid serviceCategories={serviceCategories} />
+      
 
     {/* CTA */}
     <div className="text-center mt-16">

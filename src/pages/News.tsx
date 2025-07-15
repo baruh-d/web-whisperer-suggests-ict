@@ -16,7 +16,7 @@ import blogPlaceholder from '@/assets/blog-placeholder.png';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Input } from '@/components/ui/input';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import NewsletterSignup from '@/pages/NewsletterSignup';
+import NewsletterSignup from '@/components/NewsletterSignup';
 
 // Mock data fallback
 const MOCK_NEWS = [
