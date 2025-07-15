@@ -34,6 +34,7 @@ import { motion } from 'framer-motion';
 
 // Import images
 import professionalMeetingImage from '@/assets/professional-meeting.jpg';
+import techworkspaceImage from '@/assets/tech-workspace.jpg';
 
 // Partner Logos
 import microsoftLogo from '@/assets/partners/microsoft-logo.png';
@@ -189,7 +190,7 @@ const Index: React.FC = () => {
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `url('src/assets/tech-workspace.jpg')`,
+            backgroundImage: `url('${techworkspaceImage}')`,
             backgroundBlendMode: 'overlay'
           }}
         ></div>
