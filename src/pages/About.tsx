@@ -256,7 +256,7 @@ const About = () => {
           description: "Recognized as a government-compliant service provider, committed to inclusivity and responsible business practices.",
           color: "text-green-500",
           bgColor: "bg-green-500/10",
-          image: "/images/kenya/agpo-certified.jpg"
+          image: "/images/kenya/agpo-certified.png"
         },
         {
           icon: Globe,
