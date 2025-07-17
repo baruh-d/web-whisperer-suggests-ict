@@ -505,7 +505,7 @@ const About = () => {
             </p>
           </motion.div>
 
-          <div className="grid sm:grid-cols-2 gap-8 sm:gap-10 md:gap-12 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto">
             {[
               {
                 name: "Rachel Muthoga",
@@ -569,10 +569,10 @@ const About = () => {
                 transition={{ duration: 0.6, delay: index * 0.1, type: 'spring' }}
                 viewport={{ once: true }}
                 whileHover={{ y: -10 }}
-                className="sm:col-span-1"
+                className="col-span-1"
               >
-                <Card className="h-full border-0 overflow-hidden group shadow-xl hover:shadow-2xl transition-shadow duration-500">
-                  <div className="relative h-full min-h-[400px] sm:min-h-[450px] md:min-h-[500px]">
+                <Card className="h-full border-0 overflow-hidden group shadow-lg hover:shadow-xl transition-shadow duration-500">
+                  <div className="relative h-full min-h-[360px] sm:min-h-[380px] md:min-h-[400px]">
                     <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/80 z-10"></div>
                     {member.photo ? (
                       <img
@@ -586,11 +586,11 @@ const About = () => {
                       </div>
                     )}
                     
-                    <div className="relative z-20 h-full flex flex-col justify-end p-6 sm:p-8 md:p-10">
+                    <div className="relative z-20 h-full flex flex-col justify-end p-5 sm:p-6">
                       <div>
-                        <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-2">{member.name}</h3>
-                        <p className="text-blue-400 sm:text-blue-600 font-semibold text-lg sm:text-xl mb-4 sm:mb-6">{member.position}</p>
-                        <p className="text-white/90 text-sm sm:text-base md:text-lg mb-4 sm:mb-6 leading-relaxed">{member.expertise}</p>
+                        <h3 className="text-xl sm:text-xl md:text-2xl font-bold text-white mb-1 sm:mb-2">{member.name}</h3>
+                        <p className="text-blue-400 font-semibold text-base sm:text-lg mb-3 sm:mb-4">{member.position}</p>
+                        <p className="text-white/90 text-sm sm:text-sm md:text-base mb-3 sm:mb-4 leading-relaxed">{member.expertise}</p>
                         <Badge variant="secondary" className="bg-white/10 backdrop-blur-sm border-white/20 text-white hover:bg-white/20 text-xs sm:text-sm">
                           {member.experience}
                         </Badge>
