@@ -517,13 +517,49 @@ const About = () => {
                 color: "bg-gradient-to-br from-purple-600 to-pink-600"
               },
               {
-                name: "Tyler David Wambua",
-                position: "Finance Director", 
-                expertise: "Financial Strategy | Risk Management | Corporate Governance",
+                name: "David Mwendwa",
+                position: "Sales Manager", 
+                expertise: "Client Acquisition | Strategic Partnerships | Revenue Growth",
                 experience: "4+ years in financial leadership roles",
-                initials: "TDW",
-                photo: "/images/about/tyler-wambua.jpg",
+                initials: "DW",
+                photo: "/images/about/david-mwendwa.jpg",
                 color: "bg-gradient-to-br from-blue-600 to-corporate-blue"
+              },
+              {
+                name: "Rose Njenga",
+                position: "Finance Manager",
+                expertise: "Budget Planning | Financial Reporting | Audit Compliance",
+                experience: "6+ years in corporate finance and treasury operations",
+                initials: "RN",
+                photo: "/images/about/rose-njenga.jpg",
+                color: "bg-gradient-to-br from-green-600 to-teal-500"
+              },
+              {
+                name: "Barringtone Ambani",
+                position: "Sales Executive",
+                expertise: "Lead Generation | Client Retention | Product Demos",
+                experience: "3+ years in B2B and B2C sales environments",
+                initials: "BA",
+                photo: "/images/about/barringtone-ambani.jpg",
+                color: "bg-gradient-to-br from-purple-600 to-pink-500"
+              },
+              {
+                name: "Richard Mwangi",
+                position: "Technical Support",
+                expertise: "User Assistance | Ticket Management | System Troubleshooting",
+                experience: "2+ years supporting software and hardware systems",
+                initials: "RW",
+                photo: "/images/about/richard-mwangi.jpg",
+                color: "bg-gradient-to-br from-yellow-500 to-orange-600"
+              },
+              {
+                name: "Daniel Baru",
+                position: "Software Technician",
+                expertise: "System Installations | Debugging | Performance Optimization",
+                experience: "2+ years in software maintenance and IT support",
+                initials: "DB",
+                photo: "/images/about/daniel-baru.jpg",
+                color: "bg-gradient-to-br from-gray-700 to-slate-500"
               }
             ].map((member, index) => (
               <motion.div
