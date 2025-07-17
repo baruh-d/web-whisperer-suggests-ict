@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, MapPin, Phone, Mail, Clock, Shield } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { serviceCategories } from '@/config/services';
 
 const Footer = () => {
   return (
@@ -9,9 +10,7 @@ const Footer = () => {
       <div className="absolute inset-0 bg-black/95"></div>
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         
-        {/* Footer Sections */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-          {/* Company Info */}
           <div className="space-y-6">
             <div className="flex items-center space-x-4">
               <img 
@@ -45,7 +44,6 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Quick Links */}
           <div>
             <h3 className="text-lg font-semibold text-white mb-6 font-poppins">Quick Links</h3>
             <ul className="space-y-3">
@@ -70,28 +68,23 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Services */}
           <div>
             <h3 className="text-lg font-semibold text-white mb-6 font-poppins">Our Services</h3>
             <ul className="space-y-3">
-              {[
-                'Audio Visual Solutions',
-                'Network Infrastructure', 
-                'Security Systems',
-                'Office Automation',
-                'Computing Solutions',
-                'Software Development'
-              ].map((service) => (
-                <li key={service}>
-                  <span className="text-primary-foreground/80 hover:text-white transition-colors cursor-default">
-                    {service}
-                  </span>
+              {serviceCategories.map((category) => (
+                <li key={category.id}>
+                  <Link 
+                    to={`/services#${category.id}`}
+                    className="text-primary-foreground/80 hover:text-white transition-colors flex items-center group"
+                  >
+                    <ArrowRight className="h-3 w-3 mr-2 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    {category.title}
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Contact Info */}
           <div>
             <h3 className="text-lg font-semibold text-white mb-6 font-poppins">Get In Touch</h3>
             <div className="space-y-4">
@@ -146,7 +139,6 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Newsletter Signup */}
         <div className="border-t border-white/20 pt-8 mb-8">
           <div className="max-w-2xl mx-auto text-center">
             <h3 className="text-xl font-bold text-white mb-2 font-poppins">Stay Updated</h3>
@@ -166,7 +158,6 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Bottom Bar */}
         <div className="border-t border-white/20 pt-8 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
           <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6 text-sm text-primary-foreground/80">
             <p>&copy; 2024 OPPA Services Limited. All rights reserved.</p>
@@ -174,8 +165,6 @@ const Footer = () => {
               <Link to="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
               <span className="text-primary-foreground/40">|</span>
               <Link to="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
-              <span className="text-primary-foreground/40">|</span>
-              <button className="hover:text-white transition-colors">Cookie Settings</button>
             </div>
           </div>
           

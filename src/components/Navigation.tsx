@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Menu, X, Phone, Mail, MapPin, ChevronDown, Award, Shield } from 'lucide-react';
+import { serviceCategories } from '@/config/services'
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,12 +15,10 @@ const Navigation = () => {
     { 
       href: '/services', 
       label: 'Services',
-      submenu: [
-        { href: '/services/ict-integration', label: 'ICT Integration' },
-        { href: '/services/cloud-solutions', label: 'Cloud Solutions' },
-        { href: '/services/cybersecurity', label: 'Cybersecurity' },
-        { href: '/services/support', label: 'IT Support' }
-      ]
+      submenu: serviceCategories.map(category => ({
+        href: `/services#${category.id}`,
+        label: category.title,
+      }))
     },
     { href: '/news', label: 'News & Events' },
     { href: '/about', label: 'About Us' },
@@ -29,7 +28,6 @@ const Navigation = () => {
 
   const isActive = (path) => location.pathname === path;
 
-  // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
@@ -38,7 +36,6 @@ const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (isOpen && !event.target.closest('.mobile-menu')) {
@@ -51,7 +48,7 @@ const Navigation = () => {
 
   return (
     <>
-      {/* Enhanced Top Contact Bar */}
+      {/* Top Contact Bar */}
       <div className={`bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900 text-white py-3 hidden lg:block transition-all duration-500 ${isScrolled ? 'py-2 opacity-90' : 'opacity-100'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center text-sm">
@@ -92,7 +89,6 @@ const Navigation = () => {
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className={`flex justify-between items-center transition-all duration-500 ${isScrolled ? 'h-16' : 'h-20'}`}>
-            {/* Enhanced Logo */}
             <Link to="/" className="flex items-center space-x-4 group">
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
@@ -111,13 +107,9 @@ const Navigation = () => {
                 }`}>
                   OPPA <span className="text-blue-600">Services</span>
                 </div>
-                {/* <div className="text-sm text-blue-600 font-semibold tracking-wide">
-                  ICT Systems Integration
-                </div> */}
               </div>
             </Link>
 
-            {/* Enhanced Desktop Navigation */}
             <div className="hidden lg:flex items-center space-x-8">
               {navLinks.map((link, index) => (
                 <div 
@@ -133,26 +125,22 @@ const Navigation = () => {
                         ? 'text-blue-600'
                         : 'text-gray-700 hover:text-blue-600'
                     }`}
-                    style={{ animationDelay: `${index * 100}ms` }}
                   >
                     <span>{link.label}</span>
                     {link.submenu && <ChevronDown className="h-4 w-4 transition-transform duration-300 group-hover:rotate-180" />}
                   </Link>
                   
-                  {/* Animated underline */}
                   <span className={`absolute -bottom-2 left-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-500 ${
                     isActive(link.href) ? 'w-full' : 'w-0 group-hover:w-full'
                   }`}></span>
 
-                  {/* Enhanced Dropdown menu */}
                   {link.submenu && activeDropdown === index && (
                     <div className="absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-xl border border-gray-200/70 py-2 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 origin-top">
-                      {link.submenu.map((item, subIndex) => (
+                      {link.submenu.map((item) => (
                         <Link
                           key={item.href}
                           to={item.href}
                           className="block px-4 py-3 text-sm text-gray-700 hover:text-blue-600 hover:bg-blue-50/70 transition-all duration-200 hover:pl-5"
-                          style={{ animationDelay: `${subIndex * 50}ms` }}
                         >
                           {item.label}
                         </Link>
@@ -163,22 +151,6 @@ const Navigation = () => {
               ))}
               
               <div className="flex items-center space-x-4">
-                <div className="hidden xl:flex items-center space-x-4 text-sm text-gray-600">
-                  <a href="tel:+254705576746" className="flex items-center space-x-2 hover:text-blue-600 transition-all duration-300 hover:scale-105 group">
-                    <div className="p-1.5 rounded-full bg-blue-100 group-hover:bg-blue-200 transition-colors duration-300">
-                      <Phone className="h-3 w-3 text-blue-600" />
-                    </div>
-                    <span className="font-medium">+254 705 576 746</span>
-                  </a>
-                  <div className="w-px h-4 bg-gray-300/70"></div>
-                  <a href="mailto:info@oppaservices.com" className="flex items-center space-x-2 hover:text-blue-600 transition-all duration-300 hover:scale-105 group">
-                    <div className="p-1.5 rounded-full bg-blue-100 group-hover:bg-blue-200 transition-colors duration-300">
-                      <Mail className="h-3 w-3 text-blue-600" />
-                    </div>
-                    <span className="font-medium">info@oppaservices.com</span>
-                  </a>
-                </div>
-
                 <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 font-semibold px-6 py-2 rounded-lg group">
                   <Link to="/contact" className="flex items-center space-x-2">
                     <span>Get Quote</span>
@@ -188,33 +160,31 @@ const Navigation = () => {
               </div>
             </div>
 
-            {/* Enhanced Mobile menu button */}
             <div className="lg:hidden">
               <Button
-  variant="ghost"
-  size="sm"
-  onClick={() => setIsOpen(!isOpen)}
-  className="relative p-2 rounded-lg hover:bg-gray-100 transition-all duration-300"
-  aria-expanded={isOpen}
-  aria-controls="mobile-menu"
-  aria-label="Toggle navigation"
->
-  {isOpen ? (
-    <X className="h-6 w-6 text-blue-600" />
-  ) : (
-    <Menu className="h-6 w-6 text-gray-700" />
-  )}
-</Button>
+                variant="ghost"
+                size="sm"
+                onClick={() => setIsOpen(!isOpen)}
+                className="relative p-2 rounded-lg hover:bg-gray-100 transition-all duration-300"
+                aria-expanded={isOpen}
+                aria-controls="mobile-menu"
+                aria-label="Toggle navigation"
+              >
+                {isOpen ? (
+                  <X className="h-6 w-6 text-blue-600" />
+                ) : (
+                  <Menu className="h-6 w-6 text-gray-700" />
+                )}
+              </Button>
             </div>
           </div>
 
-          {/* Enhanced Mobile Navigation */}
           <div className={`lg:hidden mobile-menu overflow-hidden transition-all duration-500 ease-in-out ${
             isOpen ? 'max-h-screen py-4' : 'max-h-0 py-0'
           }`}>
             <div className="border-t border-gray-200/50 bg-gradient-to-br from-white via-blue-50 to-purple-50 rounded-b-xl shadow-inner">
               <div className="flex flex-col space-y-2 p-4">
-                {navLinks.map((link, index) => (
+                {navLinks.map((link) => (
                   <div key={link.href} className="group">
                     <Link
                       to={link.href}
@@ -224,7 +194,6 @@ const Navigation = () => {
                           : 'text-gray-700 hover:text-blue-600 hover:bg-white hover:shadow-md'
                       }`}
                       onClick={() => setIsOpen(false)}
-                      style={{ animationDelay: `${index * 100}ms` }}
                     >
                       <span>{link.label}</span>
                       {link.submenu && <ChevronDown className={`h-4 w-4 transition-transform duration-300 ${isActive(link.href) ? 'text-white' : 'text-gray-400'}`} />}
@@ -232,7 +201,7 @@ const Navigation = () => {
                     
                     {link.submenu && (
                       <div className="ml-4 mt-2 space-y-1">
-                        {link.submenu.map((item, subIndex) => (
+                        {link.submenu.map((item) => (
                           <Link
                             key={item.href}
                             to={item.href}
@@ -261,12 +230,6 @@ const Navigation = () => {
                       </div>
                       <span className="font-medium">info@oppaservices.com</span>
                     </a>
-                    <div className="flex items-center space-x-3 text-gray-600 p-3">
-                      <div className="p-2 rounded-full bg-gray-200">
-                        <MapPin className="h-4 w-4" />
-                      </div>
-                      <span className="font-medium text-xs">Elysee Plaza, Kilimani Road</span>
-                    </div>
                   </div>
                 </div>
 

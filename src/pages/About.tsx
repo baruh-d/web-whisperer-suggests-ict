@@ -588,7 +588,7 @@ const About = () => {
                     
                     <div className="relative z-20 h-full flex flex-col justify-end p-5 sm:p-6">
                       <div>
-                        <h3 className="text-xl sm:text-xl md:text-2xl font-bold text-white mb-1 sm:mb-2">{member.name}</h3>
+                        <h3 className="text-xl sm:text-xl md:text-2xl font-bold text-red mb-1 sm:mb-2">{member.name}</h3>
                         <p className="text-blue-400 font-semibold text-base sm:text-lg mb-3 sm:mb-4">{member.position}</p>
                         <p className="text-white/90 text-sm sm:text-sm md:text-base mb-3 sm:mb-4 leading-relaxed">{member.expertise}</p>
                         <Badge variant="secondary" className="bg-white/10 backdrop-blur-sm border-white/20 text-white hover:bg-white/20 text-xs sm:text-sm">
